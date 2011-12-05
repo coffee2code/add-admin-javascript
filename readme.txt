@@ -3,16 +3,16 @@ Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: admin, javascript, js, script, admin theme, customization, coffee2code
 Requires at least: 3.0
-Tested up to: 3.2
+Tested up to: 3.3
 Stable tag: 1.1
 Version: 1.1
 
-Easily define additional JavaScript (inline and/or by URL) to be added to all administration pages.
+Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
 
 == Description ==
 
-Easily define additional JavaScript (inline and/or by URL) to be added to all administration pages.
+Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
 Ever want to introduce custom dynamic functionality to your WordPress admin pages and otherwise harness the power of JavaScript?  Any modification you may want to do with JavaScript can be facilitated via this plugin.
 
@@ -136,14 +136,18 @@ function my_add_jq( $js_jq ) {
 == Changelog ==
 
 = 1.1 =
-* Update plugin framework to 027
+* Update plugin framework to 029
 * Save a static version of itself in class variable $instance
 * Discontinue use of global variable $c2c_add_admin_js to store instance
 * Explicitly declare all functions as public
 * Add __construct(), activation(), and uninstall()
-* Note compatibility through WP 3.2+
+* Note compatibility through WP 3.3+
 * Drop compatibility with versions of WP older than 3.0
 * Expand most onscreen and documentation references from "JS" to "JavaScript"
+* Add .pot
+* Add screenshot
+* Add 'Domain Path' plugin header
+* Tweak description
 * Minor code formatting changes (spacing)
 * Update copyright date (2011)
 * Add plugin homepage and author links in description in readme.txt
@@ -155,7 +159,7 @@ function my_add_jq( $js_jq ) {
 == Upgrade Notice ==
 
 = 1.1 =
-Recommended update.  Renamed plugin (breaking backwards compatibility); noted WP 3.2 compatibility; dropped support for versions of WP older than 3.0; updated plugin framework; and more.
+Recommended update: renamed plugin (breaking backwards compatibility); noted compatibility through WP 3.3; dropped support for versions of WP older than 3.0; updated plugin framework; and more.
 
 = 1.0 =
 Initial public release!

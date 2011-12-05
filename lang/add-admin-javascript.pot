@@ -1,0 +1,192 @@
+# Translation of the WordPress plugin Add Admin JavaScript v1.1 by Scott Reilly.
+# Copyright (C) 2011 Scott Reilly
+# This file is distributed under the same license as the Add Admin JavaScript plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Add Admin JavaScript 1.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/add-admin-javascript\n"
+"POT-Creation-Date: 2011-12-05 17:37:15+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#. #-#-#-#-#  add-admin-javascript.pot (Add Admin JavaScript 1.1)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: add-admin-javascript.php:102
+msgid "Add Admin JavaScript"
+msgstr ""
+
+#: add-admin-javascript.php:103
+msgid "Admin JavaScript"
+msgstr ""
+
+#: add-admin-javascript.php:107
+msgid "Admin JavaScript Files"
+msgstr ""
+
+#: add-admin-javascript.php:108
+msgid ""
+"List one URL per line.  The reference can be relative to the root of your "
+"site, or a full, absolute URL.  These will be listed in the order listed, "
+"and appear in the &lt;head&gt; before the JS defined below."
+msgstr ""
+
+#: add-admin-javascript.php:112
+msgid "Admin JavaScript (in head)"
+msgstr ""
+
+#: add-admin-javascript.php:113
+msgid ""
+"Note that the above JavaScript will be added to all admin pages and apply "
+"for all admin users."
+msgstr ""
+
+#: add-admin-javascript.php:117
+msgid "Admin JavaScript (in footer)"
+msgstr ""
+
+#: add-admin-javascript.php:118
+msgid ""
+"Note that the above JavaScript will be added to all admin pages and apply "
+"for all admin users. <em>To speed up page load, it is recommended that "
+"inline JavaScript be added to the footer instead of the head.</em>"
+msgstr ""
+
+#: add-admin-javascript.php:122
+msgid "Admin jQuery JavaScript"
+msgstr ""
+
+#: add-admin-javascript.php:123
+msgid ""
+"This will be put in a <code>jQuery(document).ready(function($)) {}</code> in "
+"the footer. Note that the above JavaScript will be added to all admin pages "
+"and apply for all admin users."
+msgstr ""
+
+#: add-admin-javascript.php:147
+msgid "Add Admin JavaScript Settings"
+msgstr ""
+
+#: add-admin-javascript.php:148
+msgid "Add additional JavaScript to your admin pages."
+msgstr ""
+
+#: add-admin-javascript.php:149
+msgid ""
+"See <a href=\"#advanced-tips\">Advanced Tips</a> for info on how to use the "
+"plugin to programmatically customize JavaScript."
+msgstr ""
+
+#: add-admin-javascript.php:160
+msgid ""
+"You can also programmatically add to or customize any JavaScript defined in "
+"the \"Admin JavaScript\" field via the <code>c2c_add_admin_js_jq</code> "
+"filter, like so:"
+msgstr ""
+
+#: add-admin-javascript.php:172
+msgid ""
+"You can also programmatically add to or customize any referenced JavaScript "
+"files defined in the \"Admin JS Files\" field via the "
+"<code>c2c_add_admin_js_files</code> filter, like so:"
+msgstr ""
+
+#: add-admin-javascript.php:181
+msgid ""
+"In addition, the \"Admin JavaScript (in head)\" and \"Admin JavaScript (in "
+"footer)\" can be filtered via <code>c2c_add_admin_js_head</code> and "
+"<code>c2c_add_admin_js_footer</code> respectively."
+msgstr ""
+
+#: c2c-plugin.php:77
+msgid "Invalid file specified for C2C_Plugin: %s"
+msgstr ""
+
+#: c2c-plugin.php:286
+msgid "See the \"Help\" link to the top-right of the page for more help."
+msgstr ""
+
+#: c2c-plugin.php:319
+msgid "Settings reset."
+msgstr ""
+
+#: c2c-plugin.php:330 c2c-plugin.php:338
+msgid "A value is required for: \"%s\""
+msgstr ""
+
+#: c2c-plugin.php:347
+msgid "Expected integer value for: %s"
+msgstr ""
+
+#: c2c-plugin.php:458
+msgid "More information about %1$s %2$s"
+msgstr ""
+
+#: c2c-plugin.php:459
+msgid "Click for more help on this plugin"
+msgstr ""
+
+#: c2c-plugin.php:460
+msgid " (especially check out the \"Other Notes\" tab, if present)"
+msgstr ""
+
+#: c2c-plugin.php:550
+msgid "Settings"
+msgstr ""
+
+#: c2c-plugin.php:562
+msgid "Donation for coffee2code plugin: %s"
+msgstr ""
+
+#: c2c-plugin.php:563
+msgid "Coffee fuels my coding."
+msgstr ""
+
+#: c2c-plugin.php:802
+msgid "A plugin by coffee2code"
+msgstr ""
+
+#: c2c-plugin.php:811
+msgid "Save Changes"
+msgstr ""
+
+#: c2c-plugin.php:812
+msgid "Reset Settings"
+msgstr ""
+
+#: c2c-plugin.php:818
+msgid "Scott Reilly, aka coffee2code"
+msgstr ""
+
+#: c2c-plugin.php:819
+msgid "This plugin brought to you by %s."
+msgstr ""
+
+#: c2c-plugin.php:820
+msgid "Please consider a donation"
+msgstr ""
+
+#: c2c-plugin.php:821
+msgid "Did you find this plugin useful?"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://coffee2code.com/wp-plugins/add-admin-javascript/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Easily define additional JavaScript (inline and/or by URL) to be added to "
+"all administration pages."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Scott Reilly"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://coffee2code.com"
+msgstr ""

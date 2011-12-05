@@ -10,15 +10,18 @@ Version: 1.1
 Plugin URI: http://coffee2code.com/wp-plugins/add-admin-javascript/
 Author: Scott Reilly
 Author URI: http://coffee2code.com
-Text Domain: add-admin-js
-Description: Easily define additional JavaScript (inline and/or by URL) to be added to all administration pages.
+Text Domain: add-admin-javascript
+Domain Path: /lang/
+Description: Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
-Compatible with WordPress 3.0+, 3.1+, 3.2+.
+Compatible with WordPress 3.0+, 3.1+, 3.2+, 3.3+.
 
 =>> Read the accompanying readme.txt file for instructions and documentation.
 =>> Also, visit the plugin's homepage for additional information and updates.
 =>> Or visit: http://wordpress.org/extend/plugins/add-admin-javascript/
 
+TODO:
+	* Move 'Advanced Tips' section to contextual help
 */
 
 /*
@@ -41,7 +44,7 @@ if ( is_admin() && ! class_exists( 'c2c_AddAdminJavaScript' ) ) :
 
 require_once( 'c2c-plugin.php' );
 
-class c2c_AddAdminJavaScript extends C2C_Plugin_027 {
+class c2c_AddAdminJavaScript extends C2C_Plugin_029 {
 
 	public static $instance;
 
