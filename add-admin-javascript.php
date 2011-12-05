@@ -2,11 +2,11 @@
 /**
  * @package Add_Admin_JavaScript
  * @author Scott Reilly
- * @version 1.1
+ * @version 1.1.1
  */
 /*
 Plugin Name: Add Admin JavaScript
-Version: 1.1
+Version: 1.1.1
 Plugin URI: http://coffee2code.com/wp-plugins/add-admin-javascript/
 Author: Scott Reilly
 Author URI: http://coffee2code.com
@@ -64,7 +64,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_029 {
 		if ( ! is_null( self::$instance ) )
 			return;
 
-		parent::__construct( '1.1', 'add-admin-javascript', 'c2c', __FILE__, array() );
+		parent::__construct( '1.1.1', 'add-admin-javascript', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 		self::$instance = $this;
 	}
@@ -110,7 +110,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_029 {
 			),
 			'js_head' => array( 'input' => 'textarea', 'default' => '', 'datatype' => 'text',
 					'label' => __( 'Admin JavaScript (in head)', $this->textdomain ),
-					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users.', $this->textdomain ),
+					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', $this->textdomain ),
 					'input_attributes' => 'rows="8" cols="40"'
 			),
 			'js_foot' => array( 'input' => 'textarea', 'default' => '', 'datatype' => 'text',
@@ -161,10 +161,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_029 {
 		echo <<<HTML
 		<pre><code>add_filter( 'c2c_add_admin_js_jq', 'my_admin_js_jq' );
 function my_admin_js_jq( \$js ) {
-	\$js .= "
-		\$js_jq .= "$('.hide_me').hide();";
-		return \$js_jq;
-	";
+	\$js .= "\$('.hide_me').hide();";
 	return \$js;
 }</code></pre>
 

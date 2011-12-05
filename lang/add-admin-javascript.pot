@@ -1,11 +1,11 @@
-# Translation of the WordPress plugin Add Admin JavaScript v1.1 by Scott Reilly.
+# Translation of the WordPress plugin Add Admin JavaScript v1.1.1 by Scott Reilly.
 # Copyright (C) 2011 Scott Reilly
 # This file is distributed under the same license as the Add Admin JavaScript plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Add Admin JavaScript 1.1\n"
+"Project-Id-Version: Add Admin JavaScript 1.1.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/add-admin-javascript\n"
-"POT-Creation-Date: 2011-12-05 17:37:15+00:00\n"
+"POT-Creation-Date: 2011-12-05 19:43:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#. #-#-#-#-#  add-admin-javascript.pot (Add Admin JavaScript 1.1)  #-#-#-#-#
+#. #-#-#-#-#  add-admin-javascript.pot (Add Admin JavaScript 1.1.1)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
 #: add-admin-javascript.php:102
 msgid "Add Admin JavaScript"
@@ -38,21 +38,15 @@ msgstr ""
 msgid "Admin JavaScript (in head)"
 msgstr ""
 
-#: add-admin-javascript.php:113
-msgid ""
-"Note that the above JavaScript will be added to all admin pages and apply "
-"for all admin users."
-msgstr ""
-
-#: add-admin-javascript.php:117
-msgid "Admin JavaScript (in footer)"
-msgstr ""
-
-#: add-admin-javascript.php:118
+#: add-admin-javascript.php:113 add-admin-javascript.php:118
 msgid ""
 "Note that the above JavaScript will be added to all admin pages and apply "
 "for all admin users. <em>To speed up page load, it is recommended that "
 "inline JavaScript be added to the footer instead of the head.</em>"
+msgstr ""
+
+#: add-admin-javascript.php:117
+msgid "Admin JavaScript (in footer)"
 msgstr ""
 
 #: add-admin-javascript.php:122
@@ -87,14 +81,14 @@ msgid ""
 "filter, like so:"
 msgstr ""
 
-#: add-admin-javascript.php:172
+#: add-admin-javascript.php:169
 msgid ""
 "You can also programmatically add to or customize any referenced JavaScript "
 "files defined in the \"Admin JS Files\" field via the "
 "<code>c2c_add_admin_js_files</code> filter, like so:"
 msgstr ""
 
-#: add-admin-javascript.php:181
+#: add-admin-javascript.php:178
 msgid ""
 "In addition, the \"Admin JavaScript (in head)\" and \"Admin JavaScript (in "
 "footer)\" can be filtered via <code>c2c_add_admin_js_head</code> and "
@@ -179,8 +173,8 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Easily define additional JavaScript (inline and/or by URL) to be added to "
-"all administration pages."
+"Interface for easily defining additional JavaScript (inline and/or by URL) "
+"to be added to all administration pages."
 msgstr ""
 
 #. Author of the plugin/theme
