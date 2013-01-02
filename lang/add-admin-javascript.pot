@@ -1,11 +1,12 @@
-# Translation of the WordPress plugin Add Admin JavaScript v1.1.1 by Scott Reilly.
-# Copyright (C) 2011 Scott Reilly
+# Translation of the WordPress plugin Add Admin JavaScript v1.2 by Scott Reilly.
+# Copyright (C) 2013 Scott Reilly
 # This file is distributed under the same license as the Add Admin JavaScript plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Add Admin JavaScript 1.1.1\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/add-admin-javascript\n"
-"POT-Creation-Date: 2011-12-05 19:43:54+00:00\n"
+"Project-Id-Version: Add Admin JavaScript 1.2\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/add-admin-"
+"javascript\n"
+"POT-Creation-Date: 2013-01-02 16:28:47+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,157 +14,165 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#. #-#-#-#-#  add-admin-javascript.pot (Add Admin JavaScript 1.1.1)  #-#-#-#-#
+#. #-#-#-#-#  add-admin-javascript.pot (Add Admin JavaScript 1.2)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: add-admin-javascript.php:102
+#: add-admin-javascript.php:126
 msgid "Add Admin JavaScript"
 msgstr ""
 
-#: add-admin-javascript.php:103
+#: add-admin-javascript.php:127
 msgid "Admin JavaScript"
 msgstr ""
 
-#: add-admin-javascript.php:107
+#: add-admin-javascript.php:131
 msgid "Admin JavaScript Files"
 msgstr ""
 
-#: add-admin-javascript.php:108
+#: add-admin-javascript.php:132
 msgid ""
 "List one URL per line.  The reference can be relative to the root of your "
 "site, or a full, absolute URL.  These will be listed in the order listed, "
 "and appear in the &lt;head&gt; before the JS defined below."
 msgstr ""
 
-#: add-admin-javascript.php:112
+#: add-admin-javascript.php:136
 msgid "Admin JavaScript (in head)"
 msgstr ""
 
-#: add-admin-javascript.php:113 add-admin-javascript.php:118
+#: add-admin-javascript.php:137 add-admin-javascript.php:142
 msgid ""
 "Note that the above JavaScript will be added to all admin pages and apply "
 "for all admin users. <em>To speed up page load, it is recommended that "
 "inline JavaScript be added to the footer instead of the head.</em>"
 msgstr ""
 
-#: add-admin-javascript.php:117
+#: add-admin-javascript.php:141
 msgid "Admin JavaScript (in footer)"
 msgstr ""
 
-#: add-admin-javascript.php:122
+#: add-admin-javascript.php:146
 msgid "Admin jQuery JavaScript"
 msgstr ""
 
-#: add-admin-javascript.php:123
+#: add-admin-javascript.php:147
 msgid ""
 "This will be put in a <code>jQuery(document).ready(function($)) {}</code> in "
 "the footer. Note that the above JavaScript will be added to all admin pages "
 "and apply for all admin users."
 msgstr ""
 
-#: add-admin-javascript.php:147
+#: add-admin-javascript.php:168
 msgid "Add Admin JavaScript Settings"
 msgstr ""
 
-#: add-admin-javascript.php:148
+#: add-admin-javascript.php:169
 msgid "Add additional JavaScript to your admin pages."
 msgstr ""
 
-#: add-admin-javascript.php:149
+#: add-admin-javascript.php:170
 msgid ""
-"See <a href=\"#advanced-tips\">Advanced Tips</a> for info on how to use the "
-"plugin to programmatically customize JavaScript."
+"See the \"Advanced Tips\" tab in the \"Help\" section above for info on how "
+"to use the plugin to programmatically customize JavaScript."
 msgstr ""
 
-#: add-admin-javascript.php:160
+#: add-admin-javascript.php:181
+msgid "Advanced Tips"
+msgstr ""
+
+#: add-admin-javascript.php:204
 msgid ""
 "You can also programmatically add to or customize any JavaScript defined in "
 "the \"Admin JavaScript\" field via the <code>c2c_add_admin_js_jq</code> "
 "filter, like so:"
 msgstr ""
 
-#: add-admin-javascript.php:169
+#: add-admin-javascript.php:215
 msgid ""
 "You can also programmatically add to or customize any referenced JavaScript "
 "files defined in the \"Admin JS Files\" field via the "
 "<code>c2c_add_admin_js_files</code> filter, like so:"
 msgstr ""
 
-#: add-admin-javascript.php:178
+#: add-admin-javascript.php:226
 msgid ""
 "In addition, the \"Admin JavaScript (in head)\" and \"Admin JavaScript (in "
 "footer)\" can be filtered via <code>c2c_add_admin_js_head</code> and "
 "<code>c2c_add_admin_js_footer</code> respectively."
 msgstr ""
 
-#: c2c-plugin.php:77
+#: c2c-plugin.php:76
 msgid "Invalid file specified for C2C_Plugin: %s"
 msgstr ""
 
-#: c2c-plugin.php:286
+#: c2c-plugin.php:296
 msgid "See the \"Help\" link to the top-right of the page for more help."
 msgstr ""
 
-#: c2c-plugin.php:319
+#: c2c-plugin.php:329
 msgid "Settings reset."
 msgstr ""
 
-#: c2c-plugin.php:330 c2c-plugin.php:338
+#: c2c-plugin.php:340 c2c-plugin.php:348
 msgid "A value is required for: \"%s\""
 msgstr ""
 
-#: c2c-plugin.php:347
+#: c2c-plugin.php:357
 msgid "Expected integer value for: %s"
 msgstr ""
 
-#: c2c-plugin.php:458
+#: c2c-plugin.php:469
 msgid "More information about %1$s %2$s"
 msgstr ""
 
-#: c2c-plugin.php:459
+#: c2c-plugin.php:470
 msgid "Click for more help on this plugin"
 msgstr ""
 
-#: c2c-plugin.php:460
+#: c2c-plugin.php:471
 msgid " (especially check out the \"Other Notes\" tab, if present)"
 msgstr ""
 
-#: c2c-plugin.php:550
+#: c2c-plugin.php:585
+msgid "More Help"
+msgstr ""
+
+#: c2c-plugin.php:597
 msgid "Settings"
 msgstr ""
 
-#: c2c-plugin.php:562
+#: c2c-plugin.php:609
 msgid "Donation for coffee2code plugin: %s"
 msgstr ""
 
-#: c2c-plugin.php:563
+#: c2c-plugin.php:610
 msgid "Coffee fuels my coding."
 msgstr ""
 
-#: c2c-plugin.php:802
+#: c2c-plugin.php:845
 msgid "A plugin by coffee2code"
 msgstr ""
 
-#: c2c-plugin.php:811
+#: c2c-plugin.php:854
 msgid "Save Changes"
 msgstr ""
 
-#: c2c-plugin.php:812
+#: c2c-plugin.php:855
 msgid "Reset Settings"
 msgstr ""
 
-#: c2c-plugin.php:818
+#: c2c-plugin.php:861
 msgid "Scott Reilly, aka coffee2code"
 msgstr ""
 
-#: c2c-plugin.php:819
+#: c2c-plugin.php:862
 msgid "This plugin brought to you by %s."
 msgstr ""
 
-#: c2c-plugin.php:820
+#: c2c-plugin.php:863
 msgid "Please consider a donation"
 msgstr ""
 
-#: c2c-plugin.php:821
+#: c2c-plugin.php:864
 msgid "Did you find this plugin useful?"
 msgstr ""
 
@@ -182,5 +191,5 @@ msgid "Scott Reilly"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://coffee2code.com"
+msgid "http://coffee2code.com/"
 msgstr ""

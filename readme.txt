@@ -2,10 +2,12 @@
 Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: admin, javascript, js, script, admin theme, customization, coffee2code
-Requires at least: 3.0
-Tested up to: 3.3
-Stable tag: 1.1.1
-Version: 1.1.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires at least: 3.1
+Tested up to: 3.5
+Stable tag: 1.2
+Version: 1.2
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -34,9 +36,11 @@ Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/add-admin-javascript/
 
 Yes, via the "Admin JavaScript Files" input field on the plugin's settings page.
 
-= Can I limit what admin pages the JavaScript applies to? =
+= Can I limit what admin pages the JavaScript gets output on? =
 
 No, not presently.  The JavaScript is added to every admin page on the site.
+
+However, you can preface your selectors with admin page specific class(es) on 'body' tag to ensure CSS only applies on certain admin pages. (e.g. `jQuery('body.index-php h2').hide();`).
 
 = Can I limit what users the JavaScript applies to? =
 
@@ -135,6 +139,31 @@ function my_add_jq( $js_jq ) {
 
 == Changelog ==
 
+= 1.2 =
+* Move 'Advanced Tips' section from bottom of settings page into contextual help section
+* Add `help_tabs_content()` and `contextual_help()`
+* Prevent textareas from wrapping lines
+* Change input fields to be displayed as inline_textarea instead of textarea
+* Add `instance()` static method for returning/creating singleton instance
+* Made static variable 'instance' private
+* Add dummy `__clone()` and `__wakeup()`
+* Remove support for previously deprecated 'c2c_add_admin_css' global
+* Remove `c2c_AddAdminCSS()`; only PHP5 constructor is supported now
+* Update plugin framework to 035
+* Discontinue use of explicit pass-by-reference for objects
+* Add check to prevent execution of code if file is directly accessed
+* Regenerate .pot
+* Re-license as GPLv2 or later (from X11)
+* Add 'License' and 'License URI' header tags to readme.txt and plugin file
+* Minor documentation improvements
+* Note compatibility through WP 3.5+
+* Drop compatibility versions of WP older than 3.1
+* Update copyright date (2013)
+* Minor code reformatting (spacing)
+* Remove ending PHP close tag
+* Create repo's WP.org assets directory
+* Move screenshot into repo's assets directory
+
 = 1.1.1 =
 * Fix typo in code example in Advanced Tips
 * Add addition help text for js_head to indicate use of js_foot is preferred
@@ -163,6 +192,9 @@ function my_add_jq( $js_jq ) {
 
 
 == Upgrade Notice ==
+
+= 1.2 =
+Recommended update. Highlights: stopped wrapping long input field text; updated plugin framework; updated WP compatibility as 3.1 - 3.5+; explicitly stated license; and more.
 
 = 1.1.1 =
 Trivial update: fixed typo in code example; updated screenshot
