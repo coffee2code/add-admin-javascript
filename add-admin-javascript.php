@@ -2,11 +2,11 @@
 /**
  * @package Add_Admin_JavaScript
  * @author Scott Reilly
- * @version 1.2
+ * @version 1.3
  */
 /*
 Plugin Name: Add Admin JavaScript
-Version: 1.2
+Version: 1.3
 Plugin URI: http://coffee2code.com/wp-plugins/add-admin-javascript/
 Author: Scott Reilly
 Author URI: http://coffee2code.com/
@@ -16,15 +16,15 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Description: Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
-Compatible with WordPress 3.1+ through 3.5+.
+Compatible with WordPress 3.5+ through 3.8+.
 
 =>> Read the accompanying readme.txt file for instructions and documentation.
 =>> Also, visit the plugin's homepage for additional information and updates.
-=>> Or visit: http://wordpress.org/extend/plugins/add-admin-javascript/
+=>> Or visit: http://wordpress.org/plugins/add-admin-javascript/
 */
 
 /*
-	Copyright (c) 2010-2013 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2010-2014 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -33,7 +33,7 @@ Compatible with WordPress 3.1+ through 3.5+.
 
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
@@ -45,12 +45,12 @@ defined( 'ABSPATH' ) or die();
 
 if ( is_admin() && ! class_exists( 'c2c_AddAdminJavaScript' ) ) :
 
-require_once( 'c2c-plugin.php' );
+require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 
-class c2c_AddAdminJavaScript extends C2C_Plugin_035 {
+class c2c_AddAdminJavaScript extends C2C_Plugin_036 {
 
 	/**
-	 * @var c2c_AddAdminCSS The one true instance
+	 * @var c2c_AddAdminJavaScript The one true instance
 	 */
 	private static $instance;
 
@@ -66,7 +66,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_035 {
 	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) )
-			self::$instance = new c2c_AddAdminJavaScript;
+			self::$instance = new self();
 
 		return self::$instance;
 	}
@@ -74,30 +74,21 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_035 {
 	/**
 	 * Constructor.
 	 */
-	public function __construct() {
-		// Be a singleton
-		if ( isset( self::$instance ) )
-			return self::$instance;
-
-		parent::__construct( '1.2', 'add-admin-javascript', 'c2c', __FILE__, array() );
+	protected function __construct() {
+		parent::__construct( '1.3', 'add-admin-javascript', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 
 		return self::$instance = $this;
 	}
 
 	/**
-	 * A dummy magic method to prevent object from being cloned
+	 * Resets the object to its initial state.
 	 *
-	 * @since 1.2
+	 * @since 1.3
 	 */
-	public function __clone() { /* Do nothing */ }
-
-	/**
-	 * A dummy magic method to prevent object from being unserialized
-	 *
-	 * @since 1.2
-	 */
-	public function __wakeup() { /* Do nothing */ }
+	public function reset() {
+		$this->jq = false;
+	}
 
 	/**
 	 * Handles activation tasks, such as registering the uninstall hook.
@@ -162,9 +153,10 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_035 {
 	/**
 	 * Outputs the text above the setting form
 	 *
+	 * @param string $localized_heading_text (optional) Localized page heading text.
 	 * @return void (Text will be echoed.)
 	 */
-	public function options_page_description() {
+	public function options_page_description( $localized_heading_text = '' ) {
 		parent::options_page_description( __( 'Add Admin JavaScript Settings', $this->textdomain ) );
 		echo '<p>' . __( 'Add additional JavaScript to your admin pages.', $this->textdomain ) . '</p>';
 		echo '<p>' . __( 'See the "Advanced Tips" tab in the "Help" section above for info on how to use the plugin to programmatically customize JavaScript.' ) . '</p>';
@@ -252,8 +244,12 @@ HTML;
 
 		$files = (array) apply_filters( 'c2c_add_admin_js_files', $options['files'] );
 		if ( $files ) {
-			foreach ( $files as $file )
-				wp_enqueue_script( $this->id_base, $file, array(), $this->version, true );
+			foreach ( $files as $file ) {
+				if ( $file && $file[0] !== '/' && false === strpos( $file, '//' ) ) {
+					$file = '/' . $file;
+				}
+				wp_enqueue_script( $this->id_base . sanitize_key( $file ), $file, array(), $this->version, true );
+			}
 		}
 	}
 

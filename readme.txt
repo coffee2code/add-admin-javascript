@@ -1,26 +1,23 @@
 === Add Admin JavaScript ===
 Contributors: coffee2code
-Donate link: http://coffee2code.com/donate
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6ARCFJ9TX3522
 Tags: admin, javascript, js, script, admin theme, customization, coffee2code
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Requires at least: 3.1
-Tested up to: 3.5
-Stable tag: 1.2
-Version: 1.2
+Requires at least: 3.5
+Tested up to: 3.8
+Stable tag: 1.3
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
 
 == Description ==
 
-Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
-
 Ever want to introduce custom dynamic functionality to your WordPress admin pages and otherwise harness the power of JavaScript?  Any modification you may want to do with JavaScript can be facilitated via this plugin.
 
-Using this plugin you'll easily be able to define additional JavaScript (inline and/or by URL) to be added to all administration pages.  You can define JavaScript to appear inline in the admin head, admin footer (recommended), or in the admin footer within a jQuery `jQuery(document).ready(function($)) {}` section, or reference JavaScript files to be linked in the page header.  The referenced JavaScript files will appear in the admin head first, listed in the order defined in the plugin's settings.  Then any inline admin head JavaScript is added to the admin head.  All values can be filtered for advanced customization (see Filters section).
+Using this plugin you'll easily be able to define additional JavaScript (inline and/or by URL) to be added to all administration pages. You can define JavaScript to appear inline in the admin head, admin footer (recommended), or in the admin footer within a jQuery `jQuery(document).ready(function($)) {}` section, or reference JavaScript files to be linked in the page header. The referenced JavaScript files will appear in the admin head first, listed in the order defined in the plugin's settings. Then any inline admin head JavaScript is added to the admin head. All values can be filtered for advanced customization (see Filters section).
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/add-admin-javascript/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/add-admin-javascript/) | [Plugin Directory Page](http://wordpress.org/plugins/add-admin-javascript/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -38,13 +35,17 @@ Yes, via the "Admin JavaScript Files" input field on the plugin's settings page.
 
 = Can I limit what admin pages the JavaScript gets output on? =
 
-No, not presently.  The JavaScript is added to every admin page on the site.
+No, not presently. The JavaScript is added to every admin page on the site.
 
 However, you can preface your selectors with admin page specific class(es) on 'body' tag to ensure CSS only applies on certain admin pages. (e.g. `jQuery('body.index-php h2').hide();`).
 
 = Can I limit what users the JavaScript applies to? =
 
-No, not presently.  The JavaScript is added for any user that can enter the admin section of the site.
+No, not presently. The JavaScript is added for any user that can enter the admin section of the site.
+
+= Does this plugin include unit tests? =
+
+Yes.
 
 
 == Screenshots ==
@@ -54,7 +55,7 @@ No, not presently.  The JavaScript is added for any user that can enter the admi
 
 == Filters ==
 
-The plugin exposes four filters for hooking.  Typically, these customizations would be put into your active theme's functions.php file, or used by another plugin.
+The plugin exposes four filters for hooking. Typically, these customizations would be put into your active theme's functions.php file, or used by another plugin.
 
 = c2c_add_admin_js_files (filter) =
 
@@ -139,6 +140,24 @@ function my_add_jq( $js_jq ) {
 
 == Changelog ==
 
+= 1.3 (2014-01-03) =
+* Fix enqueuing multiple JS files by generating unique handle for each
+* Fix enqueuing of local files when not prepended with forward slash
+* Add unit tests
+* Update plugin framework to 036
+* Improve URL path construction
+* Use explicit path for require_once()
+* Add reset() to reset object to its initial state
+* Remove __clone() and __wake() since they are part of framework
+* For options_page_description(), match method signature of parent class
+* Note compatibility through WP 3.8+
+* Drop compatibility with versions of WP older than 3.5
+* Update copyright date (2014)
+* Change donate link
+* Minor readme.txt tweaks (mostly spacing)
+* Add banner
+* Update screenshot
+
 = 1.2 =
 * Move 'Advanced Tips' section from bottom of settings page into contextual help section
 * Add `help_tabs_content()` and `contextual_help()`
@@ -147,8 +166,7 @@ function my_add_jq( $js_jq ) {
 * Add `instance()` static method for returning/creating singleton instance
 * Made static variable 'instance' private
 * Add dummy `__clone()` and `__wakeup()`
-* Remove support for previously deprecated 'c2c_add_admin_css' global
-* Remove `c2c_AddAdminCSS()`; only PHP5 constructor is supported now
+* Remove `c2c_AddAdminJavaScript()`; only PHP5 constructor is supported now
 * Update plugin framework to 035
 * Discontinue use of explicit pass-by-reference for objects
 * Add check to prevent execution of code if file is directly accessed
@@ -192,6 +210,9 @@ function my_add_jq( $js_jq ) {
 
 
 == Upgrade Notice ==
+
+= 1.3 =
+Recommended update: fixed multiple bugs related to enqueuing files; added unit tests; minor improvements; noted compatibility through WP 3.8+;
 
 = 1.2 =
 Recommended update. Highlights: stopped wrapping long input field text; updated plugin framework; updated WP compatibility as 3.1 - 3.5+; explicitly stated license; and more.
