@@ -1,26 +1,25 @@
 <?php
 /**
+ * Plugin Name: Add Admin JavaScript
+ * Version:     1.3.1
+ * Plugin URI:  http://coffee2code.com/wp-plugins/add-admin-javascript/
+ * Author:      Scott Reilly
+ * Author URI:  http://coffee2code.com/
+ * Text Domain: add-admin-javascript
+ * Domain Path: /lang/
+ * License:     GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Description: Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
+ *
+ * Compatible with WordPress 3.5+ through 4.0+.
+ *
+ * =>> Read the accompanying readme.txt file for instructions and documentation.
+ * =>> Also, visit the plugin's homepage for additional information and updates.
+ * =>> Or visit: https://wordpress.org/plugins/add-admin-javascript/
+ *
  * @package Add_Admin_JavaScript
  * @author Scott Reilly
- * @version 1.3
- */
-/*
-Plugin Name: Add Admin JavaScript
-Version: 1.3
-Plugin URI: http://coffee2code.com/wp-plugins/add-admin-javascript/
-Author: Scott Reilly
-Author URI: http://coffee2code.com/
-Text Domain: add-admin-javascript
-Domain Path: /lang/
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Description: Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
-
-Compatible with WordPress 3.5+ through 3.8+.
-
-=>> Read the accompanying readme.txt file for instructions and documentation.
-=>> Also, visit the plugin's homepage for additional information and updates.
-=>> Or visit: http://wordpress.org/plugins/add-admin-javascript/
+ * @version 1.3.1
 */
 
 /*
@@ -47,7 +46,7 @@ if ( is_admin() && ! class_exists( 'c2c_AddAdminJavaScript' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 
-class c2c_AddAdminJavaScript extends C2C_Plugin_036 {
+class c2c_AddAdminJavaScript extends C2C_Plugin_038 {
 
 	/**
 	 * @var c2c_AddAdminJavaScript The one true instance
@@ -65,8 +64,9 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_036 {
 	 * @since 1.2
 	 */
 	public static function instance() {
-		if ( ! isset( self::$instance ) )
+		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self();
+		}
 
 		return self::$instance;
 	}
@@ -75,7 +75,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_036 {
 	 * Constructor.
 	 */
 	protected function __construct() {
-		parent::__construct( '1.3', 'add-admin-javascript', 'c2c', __FILE__, array() );
+		parent::__construct( '1.3.1', 'add-admin-javascript', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 
 		return self::$instance = $this;
@@ -188,10 +188,11 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_036 {
 	 * @return void (Text is echoed)
 	 */
 	public function contextual_help( $contextual_help, $screen_id, $screen = null ) {
-		if ( $screen_id != $this->options_page )
+		if ( $screen_id != $this->options_page ) {
 			return $contextual_help;
+		}
 
-		$help = '<h4>Advanced Tips</h4>';
+		$help = '<h3>' . __( 'Advanced Tips', $this->textdomain ) . '</h3>';
 
 		$help .= '<p>' . __( 'You can also programmatically add to or customize any JavaScript defined in the "Admin JavaScript" field via the <code>c2c_add_admin_js_jq</code> filter, like so:', $this->textdomain ) . '</p>';
 
@@ -227,8 +228,9 @@ HTML;
 	public function get_jq() {
 		$options = $this->get_options();
 
-		if ( $this->jq === false || empty( $this->jq ) )
+		if ( $this->jq === false || empty( $this->jq ) ) {
 			$this->jq = trim( apply_filters( 'c2c_add_admin_js_jq', $options['js_jq'] . "\n" ) );
+		}
 
 		return $this->jq;
 	}
@@ -239,8 +241,9 @@ HTML;
 	public function enqueue_js() {
 		$options = $this->get_options();
 
-		if ( $this->get_jq() != '' )
+		if ( $this->get_jq() != '' ) {
 			wp_enqueue_script( 'jquery' );
+		}
 
 		$files = (array) apply_filters( 'c2c_add_admin_js_files', $options['files'] );
 		if ( $files ) {

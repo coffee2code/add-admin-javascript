@@ -5,8 +5,8 @@ Tags: admin, javascript, js, script, admin theme, customization, coffee2code
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 3.5
-Tested up to: 3.8
-Stable tag: 1.3
+Tested up to: 4.0
+Stable tag: 1.3.1
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -17,7 +17,7 @@ Ever want to introduce custom dynamic functionality to your WordPress admin page
 
 Using this plugin you'll easily be able to define additional JavaScript (inline and/or by URL) to be added to all administration pages. You can define JavaScript to appear inline in the admin head, admin footer (recommended), or in the admin footer within a jQuery `jQuery(document).ready(function($)) {}` section, or reference JavaScript files to be linked in the page header. The referenced JavaScript files will appear in the admin head first, listed in the order defined in the plugin's settings. Then any inline admin head JavaScript is added to the admin head. All values can be filtered for advanced customization (see Filters section).
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/add-admin-javascript/) | [Plugin Directory Page](http://wordpress.org/plugins/add-admin-javascript/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/add-admin-javascript/) | [Plugin Directory Page](https://wordpress.org/plugins/add-admin-javascript/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -140,6 +140,16 @@ function my_add_jq( $js_jq ) {
 
 == Changelog ==
 
+= 1.3.1 (2014-08-25) =
+* Update plugin framework to 038
+* Minor plugin header reformatting
+* Minor code reformatting (spacing, bracing)
+* Change documentation links to wp.org to be https
+* Localize an additional string
+* Note compatibility through WP 4.0+
+* Regenerate .pot
+* Add plugin icon
+
 = 1.3 (2014-01-03) =
 * Fix enqueuing multiple JS files by generating unique handle for each
 * Fix enqueuing of local files when not prepended with forward slash
@@ -210,6 +220,9 @@ function my_add_jq( $js_jq ) {
 
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+Trivial update: update plugin framework to version 038; noted compatibility through WP 4.0+; added plugin icon.
 
 = 1.3 =
 Recommended update: fixed multiple bugs related to enqueuing files; added unit tests; minor improvements; noted compatibility through WP 3.8+;
