@@ -6,12 +6,18 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 	function setUp() {
 		parent::setUp();
+
 		$this->set_option();
 	}
 
 	function tearDown() {
 		parent::tearDown();
-		remove_filter( 'c2c_add_admin_js_files', array( $this, 'add_js_files' ) );
+
+		remove_filter( 'c2c_add_admin_js',        array( $this, 'add_js' ) );
+		remove_filter( 'c2c_add_admin_js_files',  array( $this, 'add_js_files' ) );
+		remove_filter( 'c2c_add_admin_js_footer', array( $this, 'add_js_footer' ) );
+		remove_filter( 'c2c_add_admin_js_head',   array( $this, 'add_js' ) );
+		remove_filter( 'c2c_add_admin_js_jq',     array( $this, 'add_js_jq' ) );
 
 		unset( $GLOBALS['wp_scripts']);
 		$GLOBALS['wp_scripts'] = new WP_Scripts;
@@ -104,9 +110,8 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 	function test_js_added_via_filter_not_added_to_wp_head() {
 		add_filter( 'c2c_add_admin_js_head', array( $this, 'add_js' ) );
-		$head = $this->get_action_output( 'wp_head' );
 
-		$this->assertEmpty( strpos( $head,  $this->add_js( '' ) ) );
+		$this->assertNotContains( $this->add_js( '' ), $this->get_action_output( 'wp_head' ) );
 	}
 
 	/**
@@ -115,9 +120,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	function test_js_files_added_via_filter_not_added_to_wp_head( $link ) {
 		add_filter( 'c2c_add_admin_js_files', array( $this, 'add_js_files' ) );
 
-		$head = $this->get_action_output( 'wp_head' );
-
-		$this->assertEmpty( intval( strpos( $head, $link ) ) );
+		$this->assertNotContains( $link, $this->get_action_output( 'wp_head' ) );
 	}
 
 	/***
@@ -125,9 +128,13 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	 *****/
 
 	function test_turn_on_admin() {
-		define( 'WP_ADMIN', true );
-		require dirname( __FILE__ ) . '/../add-admin-javascript.php';
+		if ( ! defined( 'WP_ADMIN' ) ) {
+			define( 'WP_ADMIN', true );
+		}
+
+		require( __DIR__ . '/../add-admin-javascript.php' );
 		c2c_AddAdminJavaScript::instance()->init();
+		c2c_AddAdminJavaScript::instance()->register_filters();
 		c2c_AddAdminJavaScript::instance()->enqueue_js();
 
 		$this->option_name = c2c_AddAdminJavaScript::instance()->admin_options_name;
@@ -136,15 +143,25 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 
+	function test_class_name() {
+		$this->assertTrue( class_exists( 'c2c_AddAdminJavaScript' ) );
+	}
+
+	function test_plugin_framework_class_name() {
+		$this->assertTrue( class_exists( 'C2C_Plugin_039' ) );
+	}
+
+	function test_version() {
+		$this->assertEquals( '1.3.2', c2c_AddAdminJavaScript::instance()->version() );
+	}
+
 	/**
 	 * @dataProvider get_js_file_links
 	 */
 	function test_js_files_are_added_to_admin_footer( $link ) {
-		c2c_AddAdminJavaScript::instance()->enqueue_js();
+		$this->test_turn_on_admin();
 
-		$footer = $this->get_action_output( 'admin_print_footer_scripts' );
-
-		$this->assertGreaterThan( 0, intval( strpos( $footer, $link ) ) );
+		$this->assertContains( $link, $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	/**
@@ -152,53 +169,52 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	 */
 	function test_js_files_added_via_filter_are_added_to_admin_footer( $link ) {
 		add_filter( 'c2c_add_admin_js_files', array( $this, 'add_js_files' ) );
-		c2c_AddAdminJavaScript::instance()->enqueue_js();
 
-		$head = $this->get_action_output( 'admin_print_footer_scripts' );
+		$this->test_turn_on_admin();
 
-		$this->assertGreaterThan( 0, intval( strpos( $head, $link ) ) );
+		$this->assertContains( $link, $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	function test_js_head_is_added_to_admin_head() {
-		$head = $this->get_action_output( 'admin_head' );
+		$this->test_turn_on_admin();
 
-		$this->assertGreaterThan( 0, intval( strpos( $head, $this->add_js( 'this.head.test();', 'settinghead' ) ) ) );
+		$this->assertContains( $this->add_js( 'this.head.test();', 'settinghead' ), $this->get_action_output( 'admin_head' ) );
 	}
 
 	function test_js_head_added_via_filter_is_added_to_admin_head() {
-		add_filter( 'c2c_add_admin_js', array( $this, 'add_js' ) );
+		add_filter( 'c2c_add_admin_js_head', array( $this, 'add_js' ) );
 
-		$head = $this->get_action_output( 'admin_head' );
+		$this->test_turn_on_admin();
 
-		$this->assertGreaterThan( 0, intval( strpos( $head,  $this->add_js( '' ) ) ) );
+		$this->assertContains( $this->add_js( '' ), $this->get_action_output( 'admin_head' ) );
 	}
 
 	function test_js_footer_is_added_to_admin_footer() {
-		$footer = $this->get_action_output( 'admin_print_footer_scripts' );
+		$this->test_turn_on_admin();
 
-		$this->assertGreaterThan( 0, intval( strpos( $footer, $this->add_js( 'this.foot.test();', 'settingfooter' ) ) ) );
+		$this->assertContains( $this->add_js( 'this.foot.test();', 'settingfooter' ), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	function test_js_footer_added_via_filter_is_added_to_admin_footer() {
+		$this->test_turn_on_admin();
+
 		add_filter( 'c2c_add_admin_js_footer', array( $this, 'add_js_footer' ) );
 
-		$footer = $this->get_action_output( 'admin_print_footer_scripts' );
-
-		$this->assertGreaterThan( 0, intval( strpos( $footer,  $this->add_js_footer() ) ) );
+		$this->assertContains( $this->add_js_footer(), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	function test_js_jq_is_added_to_admin_footer() {
-		$footer = $this->get_action_output( 'admin_print_footer_scripts' );
+		$this->test_turn_on_admin();
 
-		$this->assertGreaterThan( 0, intval( strpos( $footer, $this->add_js( '$(".jq").test();', 'settingjq' ) ) ) );
+		$this->assertContains( $this->add_js( '$(".jq").test();', 'settingjq' ), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	function test_js_jq_added_via_filter_is_added_to_admin_footer() {
 		add_filter( 'c2c_add_admin_js_jq', array( $this, 'add_js_jq' ) );
 
-		$footer = $this->get_action_output( 'admin_print_footer_scripts' );
+		$this->test_turn_on_admin();
 
-		$this->assertGreaterThan( 0, intval( strpos( $footer,  $this->add_js_jq() ) ) );
+		$this->assertContains( $this->add_js_jq(), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 }

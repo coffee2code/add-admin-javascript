@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Add Admin JavaScript
- * Version:     1.3.1
+ * Version:     1.3.2
  * Plugin URI:  http://coffee2code.com/wp-plugins/add-admin-javascript/
  * Author:      Scott Reilly
  * Author URI:  http://coffee2code.com/
@@ -11,7 +11,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Description: Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
  *
- * Compatible with WordPress 3.5+ through 4.0+.
+ * Compatible with WordPress 3.5+ through 4.1+.
  *
  * =>> Read the accompanying readme.txt file for instructions and documentation.
  * =>> Also, visit the plugin's homepage for additional information and updates.
@@ -19,11 +19,11 @@
  *
  * @package Add_Admin_JavaScript
  * @author Scott Reilly
- * @version 1.3.1
+ * @version 1.3.2
 */
 
 /*
-	Copyright (c) 2010-2014 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2010-2015 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -44,17 +44,21 @@ defined( 'ABSPATH' ) or die();
 
 if ( is_admin() && ! class_exists( 'c2c_AddAdminJavaScript' ) ) :
 
-require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
+require_once( __DIR__ . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 
-class c2c_AddAdminJavaScript extends C2C_Plugin_038 {
+class c2c_AddAdminJavaScript extends C2C_Plugin_039 {
 
 	/**
-	 * @var c2c_AddAdminJavaScript The one true instance
+	 * The one true instance.
+	 *
+	 * @var c2c_AddAdminJavaScript
 	 */
 	private static $instance;
 
 	/**
-	 * @var string To hold memoized jQuery code
+	 * Holds memoized jQuery code.
+	 *
+	 * @var string
 	 */
 	protected $jq = false;
 
@@ -75,7 +79,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_038 {
 	 * Constructor.
 	 */
 	protected function __construct() {
-		parent::__construct( '1.3.1', 'add-admin-javascript', 'c2c', __FILE__, array() );
+		parent::__construct( '1.3.2', 'add-admin-javascript', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 
 		return self::$instance = $this;
@@ -95,7 +99,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_038 {
 	 *
 	 * @since 1.1
 	 */
-	public function activation() {
+	public static function activation() {
 		register_uninstall_hook( __FILE__, array( __CLASS__, 'uninstall' ) );
 	}
 
@@ -106,7 +110,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_038 {
 	 *
 	 * @since 1.1
 	 */
-	public function uninstall() {
+	public static function uninstall() {
 		delete_option( 'c2c_add_admin_javascript' );
 	}
 
@@ -151,10 +155,9 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_038 {
 	}
 
 	/**
-	 * Outputs the text above the setting form
+	 * Outputs the text above the setting form.
 	 *
 	 * @param string $localized_heading_text (optional) Localized page heading text.
-	 * @return void (Text will be echoed.)
 	 */
 	public function options_page_description( $localized_heading_text = '' ) {
 		parent::options_page_description( __( 'Add Admin JavaScript Settings', $this->textdomain ) );
@@ -178,14 +181,13 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_038 {
 	}
 
 	/**
-	 * Outputs advanced tips text
+	 * Outputs advanced tips text.
 	 *
 	 * @since 1.2
 	 *
 	 * @param string $contextual_help The default contextual help
 	 * @param int $screen_id The screen ID
 	 * @param object $screen The screen object (only supplied in WP 3.0)
-	 * @return void (Text is echoed)
 	 */
 	public function contextual_help( $contextual_help, $screen_id, $screen = null ) {
 		if ( $screen_id != $this->options_page ) {
@@ -257,9 +259,7 @@ HTML;
 	}
 
 	/**
-	 * Outputs JavaScript as header links and/or inline header code
-	 *
-	 * @return void (Text will be echoed.)
+	 * Outputs JavaScript as header links and/or inline header code.
 	 */
 	public function add_js_to_head() {
 		$options = $this->get_options();
