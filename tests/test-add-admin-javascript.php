@@ -132,7 +132,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 			define( 'WP_ADMIN', true );
 		}
 
-		require( __DIR__ . '/../add-admin-javascript.php' );
+		require( dirname( __FILE__ ) . '/../add-admin-javascript.php' );
 		c2c_AddAdminJavaScript::instance()->init();
 		c2c_AddAdminJavaScript::instance()->register_filters();
 		c2c_AddAdminJavaScript::instance()->enqueue_js();
@@ -152,7 +152,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	function test_version() {
-		$this->assertEquals( '1.3.2', c2c_AddAdminJavaScript::instance()->version() );
+		$this->assertEquals( '1.3.3', c2c_AddAdminJavaScript::instance()->version() );
 	}
 
 	/**
