@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Add Admin JavaScript
- * Version:     1.3.3
+ * Version:     1.3.4
  * Plugin URI:  http://coffee2code.com/wp-plugins/add-admin-javascript/
  * Author:      Scott Reilly
  * Author URI:  http://coffee2code.com/
@@ -11,15 +11,15 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Description: Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
  *
- * Compatible with WordPress 3.5+ through 4.1+.
+ * Compatible with WordPress 3.5+ through 4.2+.
  *
  * =>> Read the accompanying readme.txt file for instructions and documentation.
  * =>> Also, visit the plugin's homepage for additional information and updates.
  * =>> Or visit: https://wordpress.org/plugins/add-admin-javascript/
  *
  * @package Add_Admin_JavaScript
- * @author Scott Reilly
- * @version 1.3.3
+ * @author  Scott Reilly
+ * @version 1.3.4
 */
 
 /*
@@ -79,7 +79,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_039 {
 	 * Constructor.
 	 */
 	protected function __construct() {
-		parent::__construct( '1.3.3', 'add-admin-javascript', 'c2c', __FILE__, array() );
+		parent::__construct( '1.3.4', 'add-admin-javascript', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 
 		return self::$instance = $this;
@@ -125,22 +125,22 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_039 {
 			'files' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'array',
 					'label' => __( 'Admin JavaScript Files', $this->textdomain ),
 					'help' => __( 'List one URL per line.  The reference can be relative to the root of your site, or a full, absolute URL.  These will be listed in the order listed, and appear in the &lt;head&gt; before the JS defined below.', $this->textdomain ),
-					'input_attributes' => 'style="width: 98%; white-space: nowrap;" rows="8" cols="40"'
+					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
 			'js_head' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'text',
 					'label' => __( 'Admin JavaScript (in head)', $this->textdomain ),
 					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', $this->textdomain ),
-					'input_attributes' => 'style="width: 98%; white-space: nowrap;" rows="8" cols="40"'
+					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
 			'js_foot' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'text',
 					'label' => __( 'Admin JavaScript (in footer)', $this->textdomain ),
 					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', $this->textdomain ),
-					'input_attributes' => 'style="width: 98%; white-space: nowrap;" rows="8" cols="40"'
+					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
 			'js_jq' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'text',
 					'label' => __( 'Admin jQuery JavaScript', $this->textdomain ),
 					'help' => __( 'This will be put in a <code>jQuery(document).ready(function($)) {}</code> in the footer. Note that the above JavaScript will be added to all admin pages and apply for all admin users.', $this->textdomain ),
-					'input_attributes' => 'style="width: 98%; white-space: nowrap;" rows="8" cols="40"'
+					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			)
 		);
 	}

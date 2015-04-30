@@ -140,8 +140,14 @@ function my_add_jq( $js_jq ) {
 
 == Changelog ==
 
+= 1.3.4 (2015-04-30) =
+* Bugfix: Fix line-wrapping display for Firefox and Safari
+* Enhancement: Add an additional unit test
+* Update: Move 'Advanced' section lower in readme; add inline docs to example code
+* Update: Note compatibility through WP 4.2+
+
 = 1.3.3 (2015-02-21) =
-* Revert back to using `dirname(__FILE__)`; __DIR__ is only PHP 5.3+
+* Bugfix: Revert back to using `dirname(__FILE__)`; `__DIR__` is only PHP 5.3+
 
 = 1.3.2 (2015-02-16) =
 * Update plugin framework to 039
@@ -234,8 +240,11 @@ function my_add_jq( $js_jq ) {
 
 == Upgrade Notice ==
 
+= 1.3.4 =
+Bugfix release: fixed line-wrapping display for Firefox and Safari; noted compatibility through WP 4.2+.
+
 = 1.3.3 =
-Bugfix release: revert use of __DIR__ constant since it isn't supported on older installations (PHP 5.2)
+Bugfix release: reverted use of __DIR__ constant since it isn't supported on older installations (PHP 5.2)
 
 = 1.3.2 =
 Trivial update: improvements to unit tests; updated plugin framework to version 039; noted compatibility through WP 4.1+; updated copyright date (2015).

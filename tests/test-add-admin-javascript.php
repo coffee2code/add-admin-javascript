@@ -152,7 +152,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	function test_version() {
-		$this->assertEquals( '1.3.3', c2c_AddAdminJavaScript::instance()->version() );
+		$this->assertEquals( '1.3.4', c2c_AddAdminJavaScript::instance()->version() );
 	}
 
 	/**
@@ -215,6 +215,17 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->test_turn_on_admin();
 
 		$this->assertContains( $this->add_js_jq(), $this->get_action_output( 'admin_print_footer_scripts' ) );
+	}
+
+	function test_uninstall_deletes_option() {
+		$option = 'c2c_add_admin_javascript';
+		c2c_AddAdminJavaScript::instance()->get_options();
+
+		$this->assertNotFalse( get_option( $option ) );
+
+		c2c_AddAdminJavaScript::uninstall();
+
+		$this->assertFalse( get_option( $option ) );
 	}
 
 }
