@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Add Admin JavaScript
- * Version:     1.3.4
+ * Version:     1.4
  * Plugin URI:  http://coffee2code.com/wp-plugins/add-admin-javascript/
  * Author:      Scott Reilly
  * Author URI:  http://coffee2code.com/
@@ -11,7 +11,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Description: Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
  *
- * Compatible with WordPress 3.5+ through 4.2+.
+ * Compatible with WordPress 4.1+ through 4.4+.
  *
  * =>> Read the accompanying readme.txt file for instructions and documentation.
  * =>> Also, visit the plugin's homepage for additional information and updates.
@@ -19,11 +19,16 @@
  *
  * @package Add_Admin_JavaScript
  * @author  Scott Reilly
- * @version 1.3.4
+ * @version 1.4
 */
 
 /*
-	Copyright (c) 2010-2015 by Scott Reilly (aka coffee2code)
+ * TODO:
+ * - Syntax highlighting. (Maybe try http://codemirror.net/).
+ */
+
+/*
+	Copyright (c) 2010-2016 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -46,7 +51,7 @@ if ( is_admin() && ! class_exists( 'c2c_AddAdminJavaScript' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 
-class c2c_AddAdminJavaScript extends C2C_Plugin_039 {
+class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_040 {
 
 	/**
 	 * The one true instance.
@@ -79,7 +84,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_039 {
 	 * Constructor.
 	 */
 	protected function __construct() {
-		parent::__construct( '1.3.4', 'add-admin-javascript', 'c2c', __FILE__, array() );
+		parent::__construct( '1.4', 'add-admin-javascript', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 
 		return self::$instance = $this;
@@ -118,28 +123,28 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_039 {
 	 * Initializes the plugin's configuration and localizable text variables.
 	 */
 	public function load_config() {
-		$this->name      = __( 'Add Admin JavaScript', $this->textdomain );
-		$this->menu_name = __( 'Admin JavaScript', $this->textdomain );
+		$this->name      = __( 'Add Admin JavaScript', 'add-admin-javascript' );
+		$this->menu_name = __( 'Admin JavaScript', 'add-admin-javascript' );
 
 		$this->config = array(
 			'files' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'array',
-					'label' => __( 'Admin JavaScript Files', $this->textdomain ),
-					'help' => __( 'List one URL per line.  The reference can be relative to the root of your site, or a full, absolute URL.  These will be listed in the order listed, and appear in the &lt;head&gt; before the JS defined below.', $this->textdomain ),
+					'label' => __( 'Admin JavaScript Files', 'add-admin-javascript' ),
+					'help' => __( 'List one URL per line.  The reference can be relative to the root of your site, or a full, absolute URL.  These will be listed in the order listed, and appear in the &lt;head&gt; before the JS defined below.', 'add-admin-javascript' ),
 					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
 			'js_head' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'text',
-					'label' => __( 'Admin JavaScript (in head)', $this->textdomain ),
-					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', $this->textdomain ),
+					'label' => __( 'Admin JavaScript (in head)', 'add-admin-javascript' ),
+					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', 'add-admin-javascript' ),
 					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
 			'js_foot' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'text',
-					'label' => __( 'Admin JavaScript (in footer)', $this->textdomain ),
-					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', $this->textdomain ),
+					'label' => __( 'Admin JavaScript (in footer)', 'add-admin-javascript' ),
+					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', 'add-admin-javascript' ),
 					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
 			'js_jq' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'text',
-					'label' => __( 'Admin jQuery JavaScript', $this->textdomain ),
-					'help' => __( 'This will be put in a <code>jQuery(document).ready(function($)) {}</code> in the footer. Note that the above JavaScript will be added to all admin pages and apply for all admin users.', $this->textdomain ),
+					'label' => __( 'Admin jQuery JavaScript', 'add-admin-javascript' ),
+					'help' => __( 'This will be put in a <code>jQuery(document).ready(function($)) {}</code> in the footer. Note that the above JavaScript will be added to all admin pages and apply for all admin users.', 'add-admin-javascript' ),
 					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			)
 		);
@@ -160,9 +165,9 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_039 {
 	 * @param string $localized_heading_text (optional) Localized page heading text.
 	 */
 	public function options_page_description( $localized_heading_text = '' ) {
-		parent::options_page_description( __( 'Add Admin JavaScript Settings', $this->textdomain ) );
-		echo '<p>' . __( 'Add additional JavaScript to your admin pages.', $this->textdomain ) . '</p>';
-		echo '<p>' . __( 'See the "Advanced Tips" tab in the "Help" section above for info on how to use the plugin to programmatically customize JavaScript.' ) . '</p>';
+		parent::options_page_description( __( 'Add Admin JavaScript Settings', 'add-admin-javascript' ) );
+		echo '<p>' . __( 'Add additional JavaScript to your admin pages.', 'add-admin-javascript' ) . '</p>';
+		echo '<p>' . __( 'See the "Advanced Tips" tab in the "Help" section above for info on how to use the plugin to programmatically customize JavaScript.', 'add-admin-javascript' ) . '</p>';
 	}
 
 	/**
@@ -173,7 +178,7 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_039 {
 	public function help_tabs_content( $screen ) {
 		$screen->add_help_tab( array(
 			'id'      => 'c2c-advanced-tips-' . $this->id_base,
-			'title'   => __( 'Advanced Tips', $this->textdomain ),
+			'title'   => __( 'Advanced Tips', 'add-admin-javascript' ),
 			'content' => self::contextual_help( '', $this->options_page )
 		) );
 
@@ -194,9 +199,9 @@ class c2c_AddAdminJavaScript extends C2C_Plugin_039 {
 			return $contextual_help;
 		}
 
-		$help = '<h3>' . __( 'Advanced Tips', $this->textdomain ) . '</h3>';
+		$help = '<h3>' . __( 'Advanced Tips', 'add-admin-javascript' ) . '</h3>';
 
-		$help .= '<p>' . __( 'You can also programmatically add to or customize any JavaScript defined in the "Admin JavaScript" field via the <code>c2c_add_admin_js_jq</code> filter, like so:', $this->textdomain ) . '</p>';
+		$help .= '<p>' . __( 'You can also programmatically add to or customize any JavaScript defined in the "Admin JavaScript" field via the <code>c2c_add_admin_js_jq</code> filter, like so:', 'add-admin-javascript' ) . '</p>';
 
 		$help .= <<<HTML
 		<pre><code>add_filter( 'c2c_add_admin_js_jq', 'my_admin_js_jq' );
@@ -207,7 +212,7 @@ function my_admin_js_jq( \$js ) {
 
 HTML;
 
-		$help .= '<p>' . __( 'You can also programmatically add to or customize any referenced JavaScript files defined in the "Admin JS Files" field via the <code>c2c_add_admin_js_files</code> filter, like so:', $this->textdomain ) . '</p>';
+		$help .= '<p>' . __( 'You can also programmatically add to or customize any referenced JavaScript files defined in the "Admin JS Files" field via the <code>c2c_add_admin_js_files</code> filter, like so:', 'add-admin-javascript' ) . '</p>';
 
 		$help .= <<<HTML
 		<pre><code>add_filter( 'c2c_add_admin_js_files', 'my_admin_js_files' );
@@ -218,7 +223,7 @@ function my_admin_js_files( \$files ) {
 
 HTML;
 
-		$help .= '<p>' . __( 'In addition, the "Admin JavaScript (in head)" and "Admin JavaScript (in footer)" can be filtered via <code>c2c_add_admin_js_head</code> and <code>c2c_add_admin_js_footer</code> respectively.', $this->textdomain ) . "</p>\n";
+		$help .= '<p>' . __( 'In addition, the "Admin JavaScript (in head)" and "Admin JavaScript (in footer)" can be filtered via <code>c2c_add_admin_js_head</code> and <code>c2c_add_admin_js_footer</code> respectively.', 'add-admin-javascript' ) . "</p>\n";
 
 		return $help;
 	}
@@ -250,10 +255,18 @@ HTML;
 		$files = (array) apply_filters( 'c2c_add_admin_js_files', $options['files'] );
 		if ( $files ) {
 			foreach ( $files as $file ) {
+				// Determine a version for the script (the one specified, else the plugin's version).
+				$file_parts = parse_url( $file );
+				if ( isset( $file_parts['query'] ) ) {
+					parse_str( $file_parts['query'], $file_query );
+				}
+				$version = ( ! empty( $file_query ) && isset( $file_query['ver'] ) ) ? $file_query['ver'] : $this->version;
+				unset( $file_query );
+
 				if ( $file && $file[0] !== '/' && false === strpos( $file, '//' ) ) {
 					$file = '/' . $file;
 				}
-				wp_enqueue_script( $this->id_base . sanitize_key( $file ), $file, array(), $this->version, true );
+				wp_enqueue_script( $this->id_base . sanitize_key( $file ), $file, array(), $version, true );
 			}
 		}
 	}
