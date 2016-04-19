@@ -5,7 +5,7 @@ Tags: admin, javascript, js, script, admin theme, customization, coffee2code
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.1
-Tested up to: 4.4
+Tested up to: 4.5
 Stable tag: 1.4
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
@@ -146,6 +146,7 @@ function my_add_jq( $js_jq ) {
 
 = () =
 * Change: Declare class as final.
+* Change: Note compatibility through WP 4.5+.
 
 = 1.4 (2016-01-12) =
 Highlights:
