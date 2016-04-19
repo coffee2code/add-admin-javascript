@@ -51,7 +51,7 @@ if ( is_admin() && ! class_exists( 'c2c_AddAdminJavaScript' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 
-class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_040 {
+final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_040 {
 
 	/**
 	 * The one true instance.

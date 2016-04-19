@@ -144,6 +144,9 @@ function my_add_jq( $js_jq ) {
 
 == Changelog ==
 
+= () =
+* Change: Declare class as final.
+
 = 1.4 (2016-01-12) =
 Highlights:
 * This release fixes a couple of bugs, adds support for language packs, and has many minor behind-the-scenes changes.
