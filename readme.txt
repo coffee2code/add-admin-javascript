@@ -147,6 +147,7 @@ function my_add_jq( $js_jq ) {
 = () =
 * Change: Declare class as final.
 * Change: Note compatibility through WP 4.5+.
+* New: Add LICENSE file.
 
 = 1.4 (2016-01-12) =
 Highlights:
