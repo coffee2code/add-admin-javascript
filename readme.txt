@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.1
 Tested up to: 4.5
-Stable tag: 1.4
+Stable tag: 1.5
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -144,7 +144,7 @@ function my_add_jq( $js_jq ) {
 
 == Changelog ==
 
-= () =
+= 1.5 (2016-04-22) =
 * Change: Declare class as final.
 * Change: Update plugin framework to 041:
     * For a setting that is of datatype array, ensure its default value is an array.
@@ -284,6 +284,9 @@ Details:
 
 
 == Upgrade Notice ==
+
+= 1.5 =
+Minor update: update plugin framework to version 041; verified compatibility through WP 4.5.
 
 = 1.4 =
 Recommended update: bugfixes for CSS file links containing query arguments; improved support for localization; verified compatibility through WP 4.4; removed compatibility with WP earlier than 4.1; updated copyright date (2016)
