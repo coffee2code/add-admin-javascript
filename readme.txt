@@ -144,6 +144,9 @@ function my_add_jq( $js_jq ) {
 
 == Changelog ==
 
+= () =
+* Change: Update copyright date (2018)
+
 = 1.5 (2016-04-22) =
 * Change: Declare class as final.
 * Change: Update plugin framework to 041:
