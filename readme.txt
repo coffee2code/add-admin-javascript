@@ -166,6 +166,7 @@ function my_add_jq( $js_jq ) {
 * Change: Update unit test bootstrap
     * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
     * Enable more error output for unit tests
+* Change: Align config array elements
 * Change: Note compatibility through WP 4.9+
 * Change: Remove support for WordPress older than 4.6
 * Change: Update copyright date (2018)

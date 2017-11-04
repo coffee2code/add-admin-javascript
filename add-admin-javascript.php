@@ -126,25 +126,37 @@ final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_046 {
 		$this->menu_name = __( 'Admin JavaScript', 'add-admin-javascript' );
 
 		$this->config = array(
-			'files' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'array',
-					'label' => __( 'Admin JavaScript Files', 'add-admin-javascript' ),
-					'help' => __( 'List one URL per line.  The reference can be relative to the root of your site, or a full, absolute URL.  These will be listed in the order listed, and appear in the &lt;head&gt; before the JS defined below.', 'add-admin-javascript' ),
-					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
+			'files' => array(
+				'input'            => 'inline_textarea',
+				'default'          => '',
+				'datatype'         => 'array',
+				'label'            => __( 'Admin JavaScript Files', 'add-admin-javascript' ),
+				'help'             => __( 'List one URL per line.  The reference can be relative to the root of your site, or a full, absolute URL.  These will be listed in the order listed, and appear in the &lt;head&gt; before the JS defined below.', 'add-admin-javascript' ),
+				'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
-			'js_head' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'text',
-					'label' => __( 'Admin JavaScript (in head)', 'add-admin-javascript' ),
-					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', 'add-admin-javascript' ),
-					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
+			'js_head' => array(
+				'input'            => 'inline_textarea',
+				'default'          => '',
+				'datatype'         => 'text',
+				'label'            => __( 'Admin JavaScript (in head)', 'add-admin-javascript' ),
+				'help'             => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', 'add-admin-javascript' ),
+				'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
-			'js_foot' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'text',
-					'label' => __( 'Admin JavaScript (in footer)', 'add-admin-javascript' ),
-					'help' => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', 'add-admin-javascript' ),
-					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
+			'js_foot' => array(
+				'input'            => 'inline_textarea',
+				'default'          => '',
+				'datatype'         => 'text',
+				'label'            => __( 'Admin JavaScript (in footer)', 'add-admin-javascript' ),
+				'help'             => __( 'Note that the above JavaScript will be added to all admin pages and apply for all admin users. <em>To speed up page load, it is recommended that inline JavaScript be added to the footer instead of the head.</em>', 'add-admin-javascript' ),
+				'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
-			'js_jq' => array( 'input' => 'inline_textarea', 'default' => '', 'datatype' => 'text',
-					'label' => __( 'Admin jQuery JavaScript', 'add-admin-javascript' ),
-					'help' => __( 'This will be put in a <code>jQuery(document).ready(function($)) {}</code> in the footer. Note that the above JavaScript will be added to all admin pages and apply for all admin users.', 'add-admin-javascript' ),
-					'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
+			'js_jq' => array(
+				'input'            => 'inline_textarea',
+				'default'          => '',
+				'datatype'         => 'text',
+				'label'            => __( 'Admin jQuery JavaScript', 'add-admin-javascript' ),
+				'help'             => __( 'This will be put in a <code>jQuery(document).ready(function($)) {}</code> in the footer. Note that the above JavaScript will be added to all admin pages and apply for all admin users.', 'add-admin-javascript' ),
+				'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			)
 		);
 	}
