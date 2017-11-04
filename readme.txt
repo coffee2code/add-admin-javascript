@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.5
+Stable tag: 1.6
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -144,7 +144,7 @@ function my_add_jq( $js_jq ) {
 
 == Changelog ==
 
-= () =
+= 1.6 (2017-11-03) =
 * Change: Update plugin framework to 046
     * 046:
     * Fix `reset_options()` to reference instance variable `$options`.
@@ -311,6 +311,9 @@ Details:
 
 
 == Upgrade Notice ==
+
+= 1.6 =
+Minor update: update plugin framework to version 046; verified compatibility through WP 4.9; dropped compatibility with versions of WordPress older than 4.6; updated copyright date (2018).
 
 = 1.5 =
 Minor update: update plugin framework to version 041; verified compatibility through WP 4.5.
