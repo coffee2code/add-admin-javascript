@@ -246,7 +246,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_uninstall_deletes_option() {
-		$option = 'c2c_add_admin_javascript';
+		$option = c2c_AddAdminJavaScript::SETTING_NAME;
 		c2c_AddAdminJavaScript::instance()->get_options();
 
 		$this->assertNotFalse( get_option( $option ) );
