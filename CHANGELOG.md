@@ -5,6 +5,7 @@
 * New: Add GitHub link to readme
 * Change: Store setting name in constant
 * Change: Note compatibility through WP 5.1+
+* Change: Drop compatibility with version of WP older than 4.7
 * Change: Update copyright date (2019)
 * Change: Update License URI to be HTTPS
 
