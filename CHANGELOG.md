@@ -20,6 +20,7 @@
     * Drop compatibility with version of WP older than 4.7
 * New: Add README.md file
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
+* New: Add inline documentation for hooks
 * New: Add GitHub link to readme
 * Change: Store setting name in constant
 * Change: Note compatibility through WP 5.1+

@@ -255,6 +255,15 @@ HTML;
 		$options = $this->get_options();
 
 		if ( $this->jq === false || empty( $this->jq ) ) {
+			/**
+			 * Filters the JavaScript that should be added directly to the admin page
+			 * footer within a jQuery document ready function.
+			 *
+			 * @since 1.0
+			 *
+			 * @param string $files JavaScript code (without `<script>` tags or jQuery
+			 *                      document ready function).
+			 */
 			$this->jq = trim( apply_filters( 'c2c_add_admin_js_jq', $options['js_jq'] . "\n" ) );
 		}
 
@@ -271,7 +280,15 @@ HTML;
 			wp_enqueue_script( 'jquery' );
 		}
 
+		/**
+		 * Filters the list of JavaScript files to enqueue in the admin.
+		 *
+		 * @since 1.0
+		 *
+		 * @param array $files Array of JavaScript files.
+		 */
 		$files = (array) apply_filters( 'c2c_add_admin_js_files', $options['files'] );
+
 		if ( $files ) {
 			foreach ( $files as $file ) {
 				// Determine a version for the script (the one specified, else the plugin's version).
@@ -296,7 +313,15 @@ HTML;
 	public function add_js_to_head() {
 		$options = $this->get_options();
 
+		/**
+		 * Filters the JavaScript that should be added directly to the admin page head.
+		 *
+		 * @since 1.0
+		 *
+		 * @param string $files JavaScript code (without `<script>` tags).
+		 */
 		$js = trim( apply_filters( 'c2c_add_admin_js_head', $options['js_head'] . "\n" ) );
+
 		if ( ! empty( $js ) ) {
 			echo "
 			<script type='text/javascript'>
@@ -314,7 +339,15 @@ HTML;
 	public function add_js_to_foot() {
 		$options = $this->get_options();
 
+		/**
+		 * Filters the JavaScript that should be added directly to the admin footer.
+		 *
+		 * @since 1.0
+		 *
+		 * @param string $files JavaScript code (without `<script>` tags).
+		 */
 		$js = trim( apply_filters( 'c2c_add_admin_js_footer', $options['js_foot'] . "\n" ) );
+
 		if ( ! empty( $js ) ) {
 			echo "
 			<script type='text/javascript'>
