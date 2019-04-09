@@ -57,7 +57,7 @@ Yes.
 1. A screenshot of the plugin's admin settings page.
 
 
-== Filters ==
+== Hooks ==
 
 The plugin exposes four filters for hooking. Typically, these customizations would be put into your active theme's functions.php file, or used by another plugin.
 
