@@ -6,12 +6,6 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 	private $option_name = 'c2c_add_admin_javascript';
 
-	public function setUp() {
-		parent::setUp();
-
-		$this->set_option();
-	}
-
 	public function tearDown() {
 		parent::tearDown();
 
@@ -93,18 +87,28 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		return $footer . $this->add_js( '', 'filterjq' );
 	}
 
-	public function set_option() {
-		update_option( $this->option_name, array(
-			'files' => array(
-				'https://maxcdn.example.com/font-awesome/4.4.0/css/font-awesome.min.js?ver=4.4.0',
-				'http://test.example.org/js/sample.js',
-				'/js/site-relative.js',
-				'root-relative.js',
-			),
-			'js_head' => $this->add_js( 'this.head.test();', 'settinghead' ),
-			'js_foot' => $this->add_js( 'this.foot.test();', 'settingfooter' ),
-			'js_jq'   => $this->add_js( '$(".jq").test();', 'settingjq' ),
-		) );
+	// Use true for $settings for force use of defaults.
+	public function set_option( $settings = true ) {
+		$obj = c2c_AddAdminJavaScript::instance();
+
+		if ( true === $settings ) {
+			$defaults = array(
+				'files' => array(
+					'https://maxcdn.example.com/font-awesome/4.4.0/css/font-awesome.min.js?ver=4.4.0',
+					'http://test.example.org/js/sample.js',
+					'/js/site-relative.js',
+					'root-relative.js',
+				),
+				'js_head' => $this->add_js( 'this.head.test();', 'settinghead' ),
+				'js_foot' => $this->add_js( 'this.foot.test();', 'settingfooter' ),
+				'js_jq'   => $this->add_js( '$(".jq").test();', 'settingjq' ),
+			);
+		} else {
+			$defaults = $obj->get_options();
+		}
+
+		$settings = wp_parse_args( (array) $settings, $defaults );
+		$obj->update_option( $settings, true );
 	}
 
 
@@ -169,24 +173,28 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	 * @dataProvider get_js_file_links
 	 */
 	public function test_js_files_are_added_to_admin_footer( $link ) {
+		$this->set_option();
 		$this->test_turn_on_admin();
 
 		$this->assertContains( $link, $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	public function test_ver_query_arg_added_for_links() {
+		$this->set_option();
 		$this->test_turn_on_admin();
 
 		$this->assertContains( 'http://test.example.org/js/sample.js?ver=' . c2c_AddAdminJavaScript::instance()->version(), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	public function test_ver_query_arg_added_for_relative_links() {
+		$this->set_option();
 		$this->test_turn_on_admin();
 
 		$this->assertContains( '/js/site-relative.js?ver=' . c2c_AddAdminJavaScript::instance()->version(), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	public function test_ver_query_arg_not_added_if_link_already_has_it() {
+		$this->set_option();
 		$this->test_turn_on_admin();
 
 		$this->assertContains( "'https://maxcdn.example.com/font-awesome/4.4.0/css/font-awesome.min.js?ver=4.4.0'", $this->get_action_output( 'admin_print_footer_scripts' ) );
@@ -196,6 +204,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	 * @dataProvider get_js_file_links2
 	 */
 	public function test_js_files_added_via_filter_are_added_to_admin_footer( $link ) {
+		$this->set_option();
 		add_filter( 'c2c_add_admin_js_files', array( $this, 'add_js_files' ) );
 
 		$this->test_turn_on_admin();
@@ -204,12 +213,14 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_js_head_is_added_to_admin_head() {
+		$this->set_option();
 		$this->test_turn_on_admin();
 
 		$this->assertContains( $this->add_js( 'this.head.test();', 'settinghead' ), $this->get_action_output( 'admin_head' ) );
 	}
 
 	public function test_js_head_added_via_filter_is_added_to_admin_head() {
+		$this->set_option();
 		add_filter( 'c2c_add_admin_js_head', array( $this, 'add_js' ) );
 
 		$this->test_turn_on_admin();
@@ -218,12 +229,14 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_js_footer_is_added_to_admin_footer() {
+		$this->set_option();
 		$this->test_turn_on_admin();
 
 		$this->assertContains( $this->add_js( 'this.foot.test();', 'settingfooter' ), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	public function test_js_footer_added_via_filter_is_added_to_admin_footer() {
+		$this->set_option();
 		$this->test_turn_on_admin();
 
 		add_filter( 'c2c_add_admin_js_footer', array( $this, 'add_js_footer' ) );
@@ -232,12 +245,14 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_js_jq_is_added_to_admin_footer() {
+		$this->set_option();
 		$this->test_turn_on_admin();
 
 		$this->assertContains( $this->add_js( '$(".jq").test();', 'settingjq' ), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	public function test_js_jq_added_via_filter_is_added_to_admin_footer() {
+		$this->set_option();
 		add_filter( 'c2c_add_admin_js_jq', array( $this, 'add_js_jq' ) );
 
 		$this->test_turn_on_admin();
