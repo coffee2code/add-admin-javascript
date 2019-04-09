@@ -236,7 +236,7 @@ HTML;
 		$help .= <<<HTML
 		<pre><code>add_filter( 'c2c_add_admin_js_files', 'my_admin_js_files' );
 function my_admin_js_files( \$files ) {
-	\$files[] = 'http://ajax.googleapis.com/ajax/libs/yui/2.8.1/build/yuiloader/yuiloader-min.js';
+	\$files[] = 'https://ajax.googleapis.com/ajax/libs/mootools/1.6.0/mootools.min.js';
 	return \$files;
 }</code></pre>
 
