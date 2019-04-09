@@ -302,6 +302,29 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		);
 	}
 
+	public function test_add_jq_js_to_foot() {
+		$js = "$('.hide_me').hide();";
+
+		$this->set_option( array( 'js_foot' => '', 'js_jq' => $js ) );
+		$this->test_turn_on_admin();
+
+		ob_start();
+		c2c_AddAdminJavaScript::instance()->add_js_to_foot( $js );
+		$out = ob_get_contents();
+		ob_end_clean();
+
+		$this->assertEquals(
+			"
+			<script type='text/javascript'>
+				jQuery(document).ready(function($) {
+					{$js}
+				});
+			</script>
+			",
+			$out
+		);
+	}
+
 	public function test_js_jq_is_added_to_admin_footer() {
 		$this->set_option();
 		$this->test_turn_on_admin();
