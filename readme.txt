@@ -61,7 +61,7 @@ Yes.
 
 The plugin exposes four filters for hooking. Typically, these customizations would be put into your active theme's functions.php file, or used by another plugin.
 
-= c2c_add_admin_js_files (filter) =
+**c2c_add_admin_js_files (filter)**
 
 The 'c2c_add_admin_js_files' hook allows you to programmatically add to or
 customize any referenced JavaScript files defined in the "Admin JavaScript Files" field.
@@ -80,7 +80,7 @@ function my_admin_js_files( $files ) {
 }
 `
 
-= c2c_add_admin_js_head (filter) =
+**c2c_add_admin_js_head (filter)**
 
 The 'c2c_add_admin_js_head' hook allows you to programmatically add to or
 customize any JavaScript to be put into the page head as defined in the
@@ -100,7 +100,7 @@ function my_add_head_js( $js ) {
 }
 `
 
-= c2c_add_admin_js_footer (filter) =
+**c2c_add_admin_js_footer (filter)**
 
 The 'c2c_add_admin_js_footer' hook allows you to programmatically add to or
 customize any JavaScript to be put into the page head as defined in the
@@ -120,7 +120,7 @@ function my_add_footer_js( $js ) {
 }
 `
 
-= c2c_add_admin_js_jq (filter) =
+**c2c_add_admin_js_jq (filter)**
 
 The 'c2c_add_admin_js_jq' hook allows you to filter the jQuery JavaScript to be output in the footer of admin pages.
 The 'c2c_add_admin_js_jq' hook allows you to programmatically add to or
