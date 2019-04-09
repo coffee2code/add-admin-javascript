@@ -273,7 +273,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		$this->assertEquals(
 			"
-			<script type='text/javascript'>
+			<script>
 			{$js}
 			</script>
 			",
@@ -294,7 +294,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		$this->assertEquals(
 			"
-			<script type='text/javascript'>
+			<script>
 			{$js}
 			</script>
 			",
@@ -315,7 +315,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		$this->assertEquals(
 			"
-			<script type='text/javascript'>
+			<script>
 				jQuery(document).ready(function($) {
 					{$js}
 				});

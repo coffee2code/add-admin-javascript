@@ -18,6 +18,7 @@
     * Change "Cheatin', huh?" error messages to "Something went wrong.", consistent with WP core
     * Note compatibility through WP 4.9+
     * Drop compatibility with version of WP older than 4.7
+* Change: Remove unnecessary `type='text/javascript'` attribute from `<script>` tags
 * New: Add README.md file
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
 * New: Add inline documentation for hooks

@@ -324,7 +324,7 @@ HTML;
 
 		if ( ! empty( $js ) ) {
 			echo "
-			<script type='text/javascript'>
+			<script>
 			$js
 			</script>
 			";
@@ -350,7 +350,7 @@ HTML;
 
 		if ( ! empty( $js ) ) {
 			echo "
-			<script type='text/javascript'>
+			<script>
 			$js
 			</script>
 			";
@@ -359,7 +359,7 @@ HTML;
 		$js = $this->get_jq();
 		if ( ! empty( $js ) ) {
 			echo "
-			<script type='text/javascript'>
+			<script>
 				jQuery(document).ready(function($) {
 					$js
 				});
