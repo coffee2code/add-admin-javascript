@@ -260,7 +260,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertContains( $this->add_js_footer(), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
-	public function test_add_js_to_head() {
+	public function test_add_js_to_head( $expected = false ) {
 		$js = $this->add_js( 'this.head.test();', 'settingfooter' );
 
 		$this->set_option( array( 'js_head' => $js ) );
@@ -271,17 +271,20 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$out = ob_get_contents();
 		ob_end_clean();
 
-		$this->assertEquals(
-			"
+		if ( false === $expected ) {
+			$expected = "
 			<script>
 			{$js}
 			</script>
-			",
-			$out
-		);
+			";
+		}
+
+		$this->assertEquals( $expected, $out );
+
+		return $out;
 	}
 
-	public function test_add_js_to_foot() {
+	public function test_add_js_to_foot( $expected = false ) {
 		$js = $this->add_js( 'this.foot.test();', 'settingfooter' );
 
 		$this->set_option( array( 'js_foot' => $js, 'js_jq' => '' ) );
@@ -292,17 +295,20 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$out = ob_get_contents();
 		ob_end_clean();
 
-		$this->assertEquals(
-			"
+		if ( false === $expected ) {
+			$expected = "
 			<script>
 			{$js}
 			</script>
-			",
-			$out
-		);
+			";
+		}
+
+		$this->assertEquals( $expected, $out );
+
+		return $out;
 	}
 
-	public function test_add_jq_js_to_foot() {
+	public function test_add_jq_js_to_foot( $expected = false ) {
 		$js = "$('.hide_me').hide();";
 
 		$this->set_option( array( 'js_foot' => '', 'js_jq' => $js ) );
@@ -313,16 +319,19 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$out = ob_get_contents();
 		ob_end_clean();
 
-		$this->assertEquals(
-			"
+		if ( false === $expected ) {
+			$expected = "
 			<script>
 				jQuery(document).ready(function($) {
 					{$js}
 				});
 			</script>
-			",
-			$out
-		);
+			";
+		}
+
+		$this->assertEquals( $expected, $out );
+
+		return $out;
 	}
 
 	public function test_js_jq_is_added_to_admin_footer() {
