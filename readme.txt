@@ -63,82 +63,99 @@ The plugin exposes four filters for hooking. Typically, these customizations wou
 
 **c2c_add_admin_js_files (filter)**
 
-The 'c2c_add_admin_js_files' hook allows you to programmatically add to or
-customize any referenced JavaScript files defined in the "Admin JavaScript Files" field.
+The 'c2c_add_admin_js_files' filter allows programmatic modification of the list of JavaScript files to enqueue in the admin.
 
 Arguments:
 
-* $files (array): Array of JavaScript files
+* $files (array): Array of JavaScript files.
 
 Example:
 
 `
-add_filter( 'c2c_add_admin_js_files', 'my_admin_js_files' );
+/**
+ * Adds a JavaScript file to be enqueued in the WP admin.
+ *
+ * @param array $files Array of files.
+ * @return array
+ */
 function my_admin_js_files( $files ) {
 	$files[] = 'http://ajax.googleapis.com/ajax/libs/yui/2.8.1/build/yuiloader/yuiloader-min.js';
 	return $files;
 }
+add_filter( 'c2c_add_admin_js_files', 'my_admin_js_files' );
+
 `
 
 **c2c_add_admin_js_head (filter)**
 
-The 'c2c_add_admin_js_head' hook allows you to programmatically add to or
-customize any JavaScript to be put into the page head as defined in the
-"Admin JavaScript (in head)" field.
+The 'c2c_add_admin_js_head' filter allows customization of the JavaScript that should be added directly to the admin page head.
 
 Arguments:
 
-* $js (string): JavaScript
+* $js (string): JavaScript code (without `<script>` tags).
 
 Example:
 
 `
-add_filter( 'c2c_add_admin_js_head', 'my_add_head_js' );
+/**
+ * Adds JavaScript code to be added to the admin page head.
+ *
+ * @param string $js JavaScript code.
+ * @return string
+ */
 function my_add_head_js( $js ) {
 	$js .= "alert('Hello');";
 	return $js;
 }
+add_filter( 'c2c_add_admin_js_head', 'my_add_head_js' );
 `
 
 **c2c_add_admin_js_footer (filter)**
 
-The 'c2c_add_admin_js_footer' hook allows you to programmatically add to or
-customize any JavaScript to be put into the page head as defined in the
-"Admin JavaScript (in footer)" field.
+The 'c2c_add_admin_js_footer' filter allows customization of the JavaScript that should be added directly to the admin footer.
 
 Arguments:
 
-* $js (string): JavaScript
+* $js (string): JavaScript code (without `<script>` tags).
 
 Example:
 
 `
-add_filter( 'c2c_add_admin_js_footer', 'my_add_footer_js' );
+/**
+ * Adds JavaScript code to be added to the admin footer.
+ *
+ * @param string $js JavaScript code.
+ * @return string
+ */
 function my_add_footer_js( $js ) {
 	$js .= "alert('Hello');";
 	return $js;
 }
+add_filter( 'c2c_add_admin_js_footer', 'my_add_footer_js' );
 `
 
 **c2c_add_admin_js_jq (filter)**
 
-The 'c2c_add_admin_js_jq' hook allows you to filter the jQuery JavaScript to be output in the footer of admin pages.
-The 'c2c_add_admin_js_jq' hook allows you to programmatically add to or
-customize any jQuery JS to be put into the page footer as defined in the
-"Admin jQuery JavaScript" field.
+The 'c2c_add_admin_js_jq' filter allows customization of the JavaScript that should be added directly to the admin footer within a jQuery document ready function.
 
 Arguments:
 
-* $js_jq (string): String of jQuery JavaScript
+* $jq_js (string): JavaScript code (without `<script>` tags or jQuery document ready function).
 
 Example:
 
 `
-add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
+/**
+ * Adds jQuery code to be added to the admin footer.
+ *
+ * @param string $jq_js jQuery code.
+ * @return string
+ */
 function my_add_jq( $js_jq ) {
 	$js_jq .= "$('.hide_me').hide();";
 	return $js_jq;
 }
+add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 `
 
 
