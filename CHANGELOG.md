@@ -22,6 +22,8 @@
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
 * New: Add inline documentation for hooks
 * New: Add GitHub link to readme
+* Unit tests:
+    * Change: Improve tests for settings handling
 * Change: Store setting name in constant
 * Change: Improve documentation for hooks within readme.txt
 * Change: Use alternative example remote JS library to the defunct Yahoo UI library
