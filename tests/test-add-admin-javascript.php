@@ -242,6 +242,48 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertContains( $this->add_js_footer(), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
+	public function test_add_js_to_head() {
+		$js = $this->add_js( 'this.head.test();', 'settingfooter' );
+
+		$this->set_option( array( 'js_head' => $js ) );
+		$this->test_turn_on_admin();
+
+		ob_start();
+		c2c_AddAdminJavaScript::instance()->add_js_to_head( $js );
+		$out = ob_get_contents();
+		ob_end_clean();
+
+		$this->assertEquals(
+			"
+			<script type='text/javascript'>
+			{$js}
+			</script>
+			",
+			$out
+		);
+	}
+
+	public function test_add_js_to_foot() {
+		$js = $this->add_js( 'this.foot.test();', 'settingfooter' );
+
+		$this->set_option( array( 'js_foot' => $js, 'js_jq' => '' ) );
+		$this->test_turn_on_admin();
+
+		ob_start();
+		c2c_AddAdminJavaScript::instance()->add_js_to_foot( $js );
+		$out = ob_get_contents();
+		ob_end_clean();
+
+		$this->assertEquals(
+			"
+			<script type='text/javascript'>
+			{$js}
+			</script>
+			",
+			$out
+		);
+	}
+
 	public function test_js_jq_is_added_to_admin_footer() {
 		$this->set_option();
 		$this->test_turn_on_admin();
