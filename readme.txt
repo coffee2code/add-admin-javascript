@@ -33,6 +33,8 @@ Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/add-admin-javascript/
 
 It is certainly possible that you can put yourself in an unfortunate position by supplying JavaScript that could render the admin (in whole or in part) inoperable or hidden, making it seeminly impossible to fix or revert your changes. Fortunately, there are a number of approaches you can take to correct the problem.
 
+The recommended approach is to visit the URL for the plugin's settings page, but appended with a special query parameter to disable the output of its JavaScript. The plugin's settings page would typically be at a URL like `https://example.com/wp-admin/options-general.php?page=add-admin-javascript%2Fadd-admin-javascript.php`. Append `&c2c-no-js=1` to that, so that the URL is `https://example.com/wp-admin/options-general.php?page=add-admin-javascript%2Fadd-admin-javascript.php&c2c-no-js=1` (obviously change example.com with the domain name for your site).
+
 There are other approaches you can use, though they require direct database or server filesystem access:
 
 * Disable JavaScript in your browser and revist the page. With JavaScript disabled, any JavaScript defined by the plugin would have no effect for you. Fix the JavaScript you defined and then re-enabled JavaScript for your browser.

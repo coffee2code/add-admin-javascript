@@ -61,6 +61,14 @@ final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_049 {
 	const SETTING_NAME = 'c2c_add_admin_javascript';
 
 	/**
+	 * Name of query parameter for disabling JS output.
+	 *
+	 * @since 1.7
+	 * @var string
+	 */
+	const NO_JS_QUERY_PARAM = 'c2c-no-js';
+
+	/**
 	 * The one true instance.
 	 *
 	 * @var c2c_AddAdminJavaScript
@@ -176,6 +184,7 @@ final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_049 {
 		add_action( 'admin_enqueue_scripts',      array( $this, 'enqueue_js' ) );
 		add_action( 'admin_head',                 array( $this, 'add_js_to_head' ) );
 		add_action( 'admin_print_footer_scripts', array( $this, 'add_js_to_foot' ) );
+		add_filter( 'wp_redirect',                array( $this, 'remove_query_param_from_redirects' ) );
 	}
 
 	/**
@@ -274,6 +283,10 @@ HTML;
 	 * Enqueues javascript.
 	 */
 	public function enqueue_js() {
+		if ( ! $this->can_show_js() ) {
+			return;
+		}
+
 		$options = $this->get_options();
 
 		if ( $this->get_jq() != '' ) {
@@ -308,9 +321,52 @@ HTML;
 	}
 
 	/**
+	 * Removes the query parameter to disable JS output from redirect URLs.
+	 *
+	 * Needed to prevent the query parameter from propagating from page view
+	 * through to form submission.
+	 *
+	 * @since 1.7
+	 *
+	 * @param string $url The redirect URL.
+	 * @return string
+	 */
+	public function remove_query_param_from_redirects( $url ) {
+		if ( is_admin() ) {
+			$url = remove_query_arg( self::NO_JS_QUERY_PARAM, $url );
+		}
+
+		return $url;
+	}
+
+	/**
+	 * Determines if JavaScript can be output under current conditions.
+	 *
+	 * JS will always be output in the admin unless:
+	 * - The 'c2c-no-js' query parameter is present with a value of '1'.
+	 *
+	 * @since 1.7
+	 *
+	 * @return bool True if JS can be shown, otherwise false.
+	 */
+	public function can_show_js() {
+		$can_show = true;
+
+		if ( isset( $_GET[ self::NO_JS_QUERY_PARAM ] ) && '1' === $_GET[ self::NO_JS_QUERY_PARAM ] ) {
+			$can_show = false;
+		}
+
+		return $can_show;
+	}
+
+	/**
 	 * Outputs JavaScript as header links and/or inline header code.
 	 */
 	public function add_js_to_head() {
+		if ( ! $this->can_show_js() ) {
+			return;
+		}
+
 		$options = $this->get_options();
 
 		/**
@@ -337,6 +393,10 @@ HTML;
 	 * @return void (Text will be echoed.)
 	 */
 	public function add_js_to_foot() {
+		if ( ! $this->can_show_js() ) {
+			return;
+		}
+
 		$options = $this->get_options();
 
 		/**

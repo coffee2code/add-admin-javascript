@@ -18,7 +18,9 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		if ( class_exists( 'c2c_AddAdminJavaScript' ) ) {
 			c2c_AddAdminJavaScript::instance()->reset();
+			unset( $_GET[ c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM ] );
 		}
+
 	}
 
 
@@ -348,6 +350,49 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->test_turn_on_admin();
 
 		$this->assertContains( $this->add_js_jq(), $this->get_action_output( 'admin_print_footer_scripts' ) );
+	}
+
+	public function test_remove_query_param_from_redirects() {
+		$url = 'https://example.com/wp-admin/options-general.php?page=add-admin-javascript%2Fadd-admin.javascript.php';
+
+		$this->assertEquals(
+			$url,
+			c2c_AddAdminJavaScript::instance()->remove_query_param_from_redirects( $url . '&' . c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM . '=1' )
+		);
+	}
+
+	public function test_can_show_js() {
+		$this->assertTrue( c2c_AddAdminJavaScript::instance()->can_show_js() );
+	}
+
+	public function test_can_show_js_with_false_query_param() {
+		$_GET[ c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM ] = '1';
+
+		$this->assertFalse( c2c_AddAdminJavaScript::instance()->can_show_js() );
+	}
+
+	public function test_recovery_mode_via_query_param_disables_add_js_to_head() {
+		$this->test_can_show_js_with_false_query_param();
+
+		$out = $this->test_add_js_to_head( '' );
+
+		$this->assertEmpty( $out );
+	}
+
+	public function test_recovery_mode_via_query_param_disables_add_js_to_foot() {
+		$this->test_can_show_js_with_false_query_param();
+
+		$out = $this->test_add_js_to_foot( '' );
+
+		$this->assertEmpty( $out );
+	}
+
+	public function test_recovery_mode_via_query_param_add_jq_js_to_foot() {
+		$this->test_can_show_js_with_false_query_param();
+
+		$out = $this->test_add_jq_js_to_foot( '' );
+
+		$this->assertEmpty( $out );
 	}
 
 	/*
