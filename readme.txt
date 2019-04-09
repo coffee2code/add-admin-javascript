@@ -29,6 +29,18 @@ Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/add-admin-javascript/
 
 == Frequently Asked Questions ==
 
+= How can I edit the plugin's settings in the event I supplied JavaScript that prevents the admin pages from properly loading or being seen? =
+
+It is certainly possible that you can put yourself in an unfortunate position by supplying JavaScript that could render the admin (in whole or in part) inoperable or hidden, making it seeminly impossible to fix or revert your changes. Fortunately, there are a number of approaches you can take to correct the problem.
+
+There are other approaches you can use, though they require direct database or server filesystem access:
+
+* Disable JavaScript in your browser and revist the page. With JavaScript disabled, any JavaScript defined by the plugin would have no effect for you. Fix the JavaScript you defined and then re-enabled JavaScript for your browser.
+* Presuming you know how to directly access the database: within the site's database, find the row with the option_name field value of `c2c_add_admin_javascript` and delete that row. The settings you saved for the plugin will be deleted and it will be like you've installed the plugin for the first time.
+* If your server has WP-CLI installed, you can delete the plugin's setting from the commandline: `wp option delete c2c_add_admin_javascript`
+
+The initial reaction by some might be to remove the plugin from the server's filesystem. This will certainly disable the plugin and prevent the JavaScript you configured through it from taking effect, restoring the access and functionality to the backend. However, reinstalling the plugin will put you back into the original predicament because the plugin will use the previously-configured settings, which wouldn't have changed.
+
 = Can I add JavaScript I defined via a file, or one that is hosted elsewhere? =
 
 Yes, via the "Admin JavaScript Files" input field on the plugin's settings page.
