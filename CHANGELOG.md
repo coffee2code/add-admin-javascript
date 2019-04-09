@@ -26,6 +26,7 @@
     * Change: Improve tests for settings handling
     * Change: Update `set_option()` to accept an array of setting values to use
     * Remove: Delete `setUp()` and invoke `setup_options()` within each test as needed
+    * Remove: Delete private object variable for storing setting name
 * Change: Store setting name in constant
 * Change: Improve documentation for hooks within readme.txt
 * Change: Use alternative example remote JS library to the defunct Yahoo UI library

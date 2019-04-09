@@ -4,8 +4,6 @@ defined( 'ABSPATH' ) or die();
 
 class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
-	private $option_name = 'c2c_add_admin_javascript';
-
 	public function tearDown() {
 		parent::tearDown();
 
