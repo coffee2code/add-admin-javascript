@@ -154,11 +154,11 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_plugin_framework_class_name() {
-		$this->assertTrue( class_exists( 'c2c_AddAdminJavaScript_Plugin_046' ) );
+		$this->assertTrue( class_exists( 'c2c_AddAdminJavaScript_Plugin_049' ) );
 	}
 
 	public function test_plugin_framework_version() {
-		$this->assertEquals( '046', c2c_AddAdminJavaScript::instance()->c2c_plugin_version() );
+		$this->assertEquals( '049', c2c_AddAdminJavaScript::instance()->c2c_plugin_version() );
 	}
 
 	public function test_version() {
