@@ -26,6 +26,7 @@
     * Change: Improve tests for settings handling
     * Change: Update `set_option()` to accept an array of setting values to use
     * New: Add unit tests for `add_js_to_head()`, `add_js_to_foot()`
+    * New: Add unit test for defaults for settings
     * Remove: Delete `setUp()` and invoke `setup_options()` within each test as needed
     * Remove: Delete private object variable for storing setting name
 * Change: Store setting name in constant

@@ -29,6 +29,15 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	//
 
 
+	public static function get_settings_and_defaults() {
+		return array(
+			array( 'files' ),
+			array( 'js_head' ),
+			array( 'js_foot' ),
+			array( 'js_jq' ),
+		);
+	}
+
 	public static function get_js_file_links() {
 		return array(
 			array( 'https://maxcdn.example.com/font-awesome/4.4.0/css/font-awesome.min.js?ver=4.4.0' ),
@@ -165,6 +174,15 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 	public function test_version() {
 		$this->assertEquals( '1.6', c2c_AddAdminJavaScript::instance()->version() );
+	}
+
+	/**
+	 * @dataProvider get_settings_and_defaults
+	 */
+	public function test_default_settings( $setting ) {
+		$options = c2c_AddAdminJavaScript::instance()->get_options();
+
+		$this->assertEmpty( $options[ $setting ] );
 	}
 
 	/**
