@@ -337,6 +337,6 @@ HTML;
 
 } // end c2c_AddAdminJavaScript
 
-c2c_AddAdminJavaScript::instance();
+add_action( 'plugins_loaded', array( 'c2c_AddAdminJavaScript', 'instance' ) );
 
 endif; // end if !class_exists()

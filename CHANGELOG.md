@@ -1,6 +1,7 @@
 # Changelog
 
 ## _(in-progress)_
+* Change: Initialize plugin on `plugins_loaded` action instead of on load
 * New: Add CHANGELOG.md file and move all but most recent changelog entries into it
 * New: Add GitHub link to readme
 * Change: Store setting name in constant
