@@ -395,6 +395,35 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertEmpty( $out );
 	}
 
+	/****************************************
+	 * NOTE: Anything beyond this point will run with the
+	 * C2C_ADD_ADMIN_JAVASCRIPT_DISABLED define and true.
+	 ****************************************/
+
+	public function test_can_show_js_with_true_constant() {
+		define( 'C2C_ADD_ADMIN_JAVASCRIPT_DISABLED', true );
+
+		$this->assertFalse( c2c_AddAdminJavaScript::instance()->can_show_js() );
+	}
+
+	public function test_recovery_mode_via_constant_disables_add_js_to_head() {
+		$out = $this->test_add_js_to_head( '' );
+
+		$this->assertEmpty( $out );
+	}
+
+	public function test_recovery_mode_via_constant_disables_add_js_to_foot() {
+		$out = $this->test_add_js_to_foot( '' );
+
+		$this->assertEmpty( $out );
+	}
+
+	public function test_recovery_mode_via_constant_add_jq_js_to_foot() {
+		$out = $this->test_add_jq_js_to_foot( '' );
+
+		$this->assertEmpty( $out );
+	}
+
 	/*
 	 * Setting handling
 	 */

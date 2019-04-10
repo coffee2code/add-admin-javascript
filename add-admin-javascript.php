@@ -343,6 +343,7 @@ HTML;
 	 * Determines if JavaScript can be output under current conditions.
 	 *
 	 * JS will always be output in the admin unless:
+	 * - The C2C_ADD_ADMIN_JAVASCRIPT_DISABLED constant is defined and true.
 	 * - The 'c2c-no-js' query parameter is present with a value of '1'.
 	 *
 	 * @since 1.7
@@ -352,7 +353,13 @@ HTML;
 	public function can_show_js() {
 		$can_show = true;
 
-		if ( isset( $_GET[ self::NO_JS_QUERY_PARAM ] ) && '1' === $_GET[ self::NO_JS_QUERY_PARAM ] ) {
+		// Recovery mode enabled via constant.
+		if ( $can_show && defined( 'C2C_ADD_ADMIN_JAVASCRIPT_DISABLED' ) && C2C_ADD_ADMIN_JAVASCRIPT_DISABLED ) {
+			$can_show = false;
+		}
+
+		// Recovery mode enabled via query parameter.
+		if ( $can_show && isset( $_GET[ self::NO_JS_QUERY_PARAM ] ) && '1' === $_GET[ self::NO_JS_QUERY_PARAM ] ) {
 			$can_show = false;
 		}
 
