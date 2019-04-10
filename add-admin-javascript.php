@@ -23,7 +23,6 @@
 
 /*
  * TODO:
- * - Syntax highlighting. (Maybe try http://codemirror.net/).
  */
 
 /*
@@ -182,6 +181,7 @@ final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_049 {
 	 */
 	public function register_filters() {
 		add_action( 'admin_enqueue_scripts',      array( $this, 'enqueue_js' ) );
+		add_action( 'admin_enqueue_scripts',      array( $this, 'add_codemirror' ) );
 		add_action( 'admin_head',                 array( $this, 'add_js_to_head' ) );
 		add_action( 'admin_notices',              array( $this, 'recovery_mode_notice' ) );
 		add_action( 'admin_print_footer_scripts', array( $this, 'add_js_to_foot' ) );
@@ -458,6 +458,47 @@ HTML;
 			</script>
 			";
 		}
+	}
+
+	/**
+	 * Initializes CodeMirror for the JavaScript textareas.
+	 *
+	 * @since 1.7
+	 */
+	public function add_codemirror() {
+		// Bail if not on the plugin setting page.
+		if ( $this->options_page !== get_current_screen()->id ) {
+			return;
+		}
+
+		// Bail if the code editor script hasn't been registered.
+		if ( ! wp_script_is( 'code-editor', 'registered' ) ) {
+			return;
+		}
+
+		// Enqueue code editor and settings for manipulating JS.
+		$settings = wp_enqueue_code_editor( array( 'type' => 'text/javascript' ) );
+
+		// Bail if user disabled CodeMirror.
+		if ( false === $settings ) {
+			return;
+		}
+
+		// Inline the CodeMirror code.
+		$json_settings = wp_json_encode( $settings );
+		wp_add_inline_script(
+			'code-editor',
+			sprintf(
+				'jQuery( function() {
+					wp.codeEditor.initialize( "js_head", %s );
+					wp.codeEditor.initialize( "js_foot", %s );
+					wp.codeEditor.initialize( "js_jq", %s );
+				} );',
+				$json_settings,
+				$json_settings,
+				$json_settings
+			)
+		);
 	}
 
 } // end c2c_AddAdminJavaScript

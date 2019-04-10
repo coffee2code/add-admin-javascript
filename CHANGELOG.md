@@ -1,6 +1,8 @@
 # Changelog
 
 ## _(in-progress)_
+* New: Add syntax highlighting to JavaScript input fields
+    * Adds code highlighting, syntax checking, and other features
 * New: Add recovery mode to be able to disable output of JavaScript via the plugin
     * Add support for `c2c-no-js` query parameter for enabling recovery mode
     * Add support for `C2C_ADD_ADMIN_JAVASCRIPT_DISABLED` constant for enabling recovery mode
