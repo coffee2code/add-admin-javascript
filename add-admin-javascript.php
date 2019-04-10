@@ -183,6 +183,7 @@ final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_049 {
 	public function register_filters() {
 		add_action( 'admin_enqueue_scripts',      array( $this, 'enqueue_js' ) );
 		add_action( 'admin_head',                 array( $this, 'add_js_to_head' ) );
+		add_action( 'admin_notices',              array( $this, 'recovery_mode_notice' ) );
 		add_action( 'admin_print_footer_scripts', array( $this, 'add_js_to_foot' ) );
 		add_filter( 'wp_redirect',                array( $this, 'remove_query_param_from_redirects' ) );
 	}
@@ -254,6 +255,30 @@ HTML;
 		$help .= '<p>' . __( 'In addition, the "Admin JavaScript (in head)" and "Admin JavaScript (in footer)" can be filtered via <code>c2c_add_admin_js_head</code> and <code>c2c_add_admin_js_footer</code> respectively.', 'add-admin-javascript' ) . "</p>\n";
 
 		return $help;
+	}
+
+	/**
+	 * Outputs admin notice on plugin's setting page if recovery mode is active.
+	 *
+	 * @since 1.7
+	 */
+	public function recovery_mode_notice() {
+		if ( get_current_screen()->id === $this->options_page && ! $this->can_show_js() ) {
+			if ( defined( 'C2C_ADD_ADMIN_JAVASCRIPT_DISABLED' ) && C2C_ADD_ADMIN_JAVASCRIPT_DISABLED ) {
+				$msg = sprintf(
+					__( "<strong>RECOVERY MODE ENABLED:</strong> JavaScript output for this plugin is currently disabled for the entire admin area via use of the <code>%s</code> constant.", 'add-admin-javascript' ),
+					'C2C_ADD_ADMIN_JAVASCRIPT_DISABLED'
+				);
+			} else {
+				$msg = __( "<strong>RECOVERY MODE ENABLED:</strong> JavaScript output for this plugin is disabled on this page view.", 'add-admin-javascript' );;
+			}
+
+			echo <<<HTML
+				<div class="error">
+					<p>{$msg}</p>
+				</div>
+HTML;
+		}
 	}
 
 	/**

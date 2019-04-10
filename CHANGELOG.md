@@ -4,6 +4,8 @@
 * New: Add recovery mode to be able to disable output of JavaScript via the plugin
     * Add support for `c2c-no-js` query parameter for enabling recovery mode
     * Add support for `C2C_ADD_ADMIN_JAVASCRIPT_DISABLED` constant for enabling recovery mode
+    * Display admin notice when recovery mode is active
+    * Add `can_show_js()`, `remove_query_param_from_redirects()`, `recovery_mode_notice()`
 * Change: Initialize plugin on `plugins_loaded` action instead of on load
 * Change: Update plugin framework to 049
     * 049:
