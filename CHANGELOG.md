@@ -1,6 +1,13 @@
 # Changelog
 
-## _(in-progress)_
+## 1.7 _(2019-04-09)_
+
+### Highlights:
+
+* This release adds a recovery mode to disable output of JavaScript via the plugin (and an admin notice when it is active), replace code input fields with code editor (with syntax highlight, syntax checking, code completion, and more), improves documentation, updates the plugin framework, notes compatibility through WP 5.1+, drops compatibility with versions of WP older than 4.7, and more documentation and code improvements.
+
+### Details:
+
 * New: Add syntax highlighting to JavaScript input fields
     * Adds code highlighting, syntax checking, and other features
 * New: Add recovery mode to be able to disable output of JavaScript via the plugin

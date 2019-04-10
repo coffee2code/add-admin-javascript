@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.7
 Tested up to: 5.1
-Stable tag: 1.6
+Stable tag: 1.7
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -182,6 +182,62 @@ add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 
 == Changelog ==
 
+= 1.7 (2019-04-09) =
+
+Highlights:
+
+* This release adds a recovery mode to disable output of JavaScript via the plugin (and an admin notice when it is active), replace code input fields with code editor (with syntax highlight, syntax checking, code completion, and more), improves documentation, updates the plugin framework, notes compatibility through WP 5.1+, drops compatibility with versions of WP older than 4.7, and more documentation and code improvements.
+
+Details:
+
+* New: Add syntax highlighting to JavaScript input fields
+    * Adds code highlighting, syntax checking, and other features
+* New: Add recovery mode to be able to disable output of JavaScript via the plugin
+    * Add support for `c2c-no-js` query parameter for enabling recovery mode
+    * Add support for `C2C_ADD_ADMIN_JAVASCRIPT_DISABLED` constant for enabling recovery mode
+    * Display admin notice when recovery mode is active
+    * Add `can_show_js()`, `remove_query_param_from_redirects()`, `recovery_mode_notice()`
+* Change: Initialize plugin on `plugins_loaded` action instead of on load
+* Change: Update plugin framework to 049
+    * 049:
+    * Correct last arg in call to `add_settings_field()` to be an array
+    * Wrap help text for settings in `label` instead of `p`
+    * Only use `label` for help text for checkboxes, otherwise use `p`
+    * Ensure a `textarea` displays as a block to prevent orphaning of subsequent help text
+    * Note compatibility through WP 5.1+
+    * Update copyright date (2019)
+    * 048:
+    * When resetting options, delete the option rather than setting it with default values
+    * Prevent double "Settings reset" admin notice upon settings reset
+    * 047:
+    * Don't save default setting values to database on install
+    * Change "Cheatin', huh?" error messages to "Something went wrong.", consistent with WP core
+    * Note compatibility through WP 4.9+
+    * Drop compatibility with version of WP older than 4.7
+* Change: Remove unnecessary `type='text/javascript'` attribute from `<script>` tags
+* New: Add README.md file
+* New: Add CHANGELOG.md file and move all but most recent changelog entries into it
+* New: Add FAQ entry describing ways to fix having potentially crippled the admin
+* New: Add inline documentation for hooks
+* New: Add GitHub link to readme
+* Unit tests:
+    * Change: Improve tests for settings handling
+    * Change: Update `set_option()` to accept an array of setting values to use
+    * New: Add unit tests for `add_js_to_head()`, `add_js_to_foot()`
+    * New: Add unit test for defaults for settings
+    * Remove: Delete `setUp()` and invoke `setup_options()` within each test as needed
+    * Remove: Delete private object variable for storing setting name
+* Change: Store setting name in constant
+* Change: Improve documentation for hooks within readme.txt
+* Change: Use alternative example remote JS library to the defunct Yahoo UI library
+* Change: Note compatibility through WP 5.1+
+* Change: Drop compatibility with version of WP older than 4.7
+* Change: Rename readme.txt section from 'Filters' to 'Hooks'
+* Change: Modify formatting of hook name in readme to prevent being uppercased when shown in the Plugin Directory
+* Change: Update installation instruction to prefer built-in installer over .zip file
+* Change: Update copyright date (2019)
+* Change: Update License URI to be HTTPS
+
 = 1.6 (2017-11-03) =
 * Change: Update plugin framework to 046
     * 046:
@@ -226,6 +282,9 @@ _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/ad
 
 
 == Upgrade Notice ==
+
+= 1.7 =
+Recommended update: added recovery mode, added code editor inputs, tweaked plugin initialization process, updated plugin framework, compatibility is now WP 4.7 through WP 5.1+, updated copyright date (2019), and more documentation and code improvements.
 
 = 1.6 =
 Minor update: update plugin framework to version 046; verified compatibility through WP 4.9; dropped compatibility with versions of WordPress older than 4.6; updated copyright date (2018).

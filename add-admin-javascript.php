@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Add Admin JavaScript
- * Version:     1.6
+ * Version:     1.7
  * Plugin URI:  http://coffee2code.com/wp-plugins/add-admin-javascript/
  * Author:      Scott Reilly
  * Author URI:  http://coffee2code.com/
@@ -18,11 +18,12 @@
  *
  * @package Add_Admin_JavaScript
  * @author  Scott Reilly
- * @version 1.6
+ * @version 1.7
 */
 
 /*
  * TODO:
+ * - Improve documentation within the help pane.
  */
 
 /*
@@ -98,7 +99,7 @@ final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_049 {
 	 * Constructor.
 	 */
 	protected function __construct() {
-		parent::__construct( '1.6', 'add-admin-javascript', 'c2c', __FILE__, array() );
+		parent::__construct( '1.7', 'add-admin-javascript', 'c2c', __FILE__, array() );
 		register_activation_hook( __FILE__, array( __CLASS__, 'activation' ) );
 
 		return self::$instance = $this;
