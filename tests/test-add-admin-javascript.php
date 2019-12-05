@@ -67,6 +67,11 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 
 	public function get_action_output( $action ) {
+		if ( 'wp_head' === $action ) {
+			// This enqueues a script that doesn't exist in the develop.svn repo.
+			remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+		}
+
 		ob_start();
 		do_action( $action );
 		$out = ob_get_contents();
