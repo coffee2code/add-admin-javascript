@@ -4,6 +4,7 @@
 * Unit tests:
     * New: Add unit tests for recovery mode's admin notice
     * New: Add assertion that recovery mode is not enabled if query param is present but false
+    * Fix: Don't pass argument to plugin object's `add_js_to_head()` and `add_js_to_food()`, which don't support arguments
     * Fix: Prevent WP from attempting to print the emoji detection script (which isn't built in the develop.svn repo)
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo
     * Change: Ensure admin mode is enabled before running certain tests

@@ -279,7 +279,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->test_turn_on_admin();
 
 		ob_start();
-		c2c_AddAdminJavaScript::instance()->add_js_to_head( $js );
+		c2c_AddAdminJavaScript::instance()->add_js_to_head();
 		$out = ob_get_contents();
 		ob_end_clean();
 
@@ -303,7 +303,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->test_turn_on_admin();
 
 		ob_start();
-		c2c_AddAdminJavaScript::instance()->add_js_to_foot( $js );
+		c2c_AddAdminJavaScript::instance()->add_js_to_foot();
 		$out = ob_get_contents();
 		ob_end_clean();
 
@@ -327,7 +327,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->test_turn_on_admin();
 
 		ob_start();
-		c2c_AddAdminJavaScript::instance()->add_js_to_foot( $js );
+		c2c_AddAdminJavaScript::instance()->add_js_to_foot();
 		$out = ob_get_contents();
 		ob_end_clean();
 
