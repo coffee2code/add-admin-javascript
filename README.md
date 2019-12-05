@@ -9,7 +9,7 @@ This plugin is available in the WordPress Plugin Directory: https://wordpress.or
 
 1. Install via the built-in WordPress plugin installer. Or install the plugin code inside the plugins directory for your site (typically `/wp-content/plugins/`).
 2. Activate the plugin through the 'Plugins' admin menu in WordPress
-3. Click the plugin's 'Settings' link next to its 'Deactivate' link (still on the Plugins page), or click on the 'Appearance' -> 'Admin JavaScript' link, to go to the plugin's admin settings page.  Customize the settings to provide some JavaScript to be added into all admin pages.
+3. Go to "Settings" -> "Admin JavaScript" and specify some JavaScript to be added into all admin pages. (You can also use the "Settings" link in the plugin's entry on the admin "Plugins" page).
 
 
 ## Additional Documentation
