@@ -186,7 +186,7 @@ add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 
 Highlights:
 
-* This release adds a recovery mode to disable output of JavaScript via the plugin (and an admin notice when it is active), replace code input fields with code editor (with syntax highlight, syntax checking, code completion, and more), improves documentation, updates the plugin framework, notes compatibility through WP 5.1+, drops compatibility with versions of WP older than 4.7, and more documentation and code improvements.
+* This release adds a recovery mode to disable output of JavaScript via the plugin (and an admin notice when it is active), replaces code input fields with code editor (with syntax highlight, syntax checking, code completion, and more), improves documentation, updates the plugin framework, notes compatibility through WP 5.1+, drops compatibility with versions of WP older than 4.7, and more documentation and code improvements.
 
 Details:
 
