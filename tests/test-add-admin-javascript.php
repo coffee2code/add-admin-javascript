@@ -374,10 +374,14 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_can_show_js() {
+		$this->test_turn_on_admin();
+
 		$this->assertTrue( c2c_AddAdminJavaScript::instance()->can_show_js() );
 	}
 
 	public function test_can_show_js_with_true_query_param() {
+		$this->test_turn_on_admin();
+
 		$_GET[ c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM ] = '1';
 
 		$this->assertFalse( c2c_AddAdminJavaScript::instance()->can_show_js() );
@@ -431,6 +435,8 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	 ****************************************/
 
 	public function test_can_show_js_with_true_constant() {
+		$this->test_turn_on_admin();
+
 		define( 'C2C_ADD_ADMIN_JAVASCRIPT_DISABLED', true );
 
 		$this->assertFalse( c2c_AddAdminJavaScript::instance()->can_show_js() );
