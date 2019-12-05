@@ -5,6 +5,7 @@
     * New: Add unit tests for recovery mode's admin notice
     * Fix: Prevent WP from attempting to print the emoji detection script (which isn't built in the develop.svn repo)
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo
+    * Change: Rename `test_can_show_js_with_false_query_param()` to `test_can_show_js_with_true_query_param()` to better reflect its intent
 * Change: Note compatibility through WP 5.3+
 * Change: Tweak installation instruction
 * Change: Tweak description of "Hooks" section in readme.txt

@@ -377,14 +377,14 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertTrue( c2c_AddAdminJavaScript::instance()->can_show_js() );
 	}
 
-	public function test_can_show_js_with_false_query_param() {
+	public function test_can_show_js_with_true_query_param() {
 		$_GET[ c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM ] = '1';
 
 		$this->assertFalse( c2c_AddAdminJavaScript::instance()->can_show_js() );
 	}
 
 	public function test_recovery_mode_via_query_param_disables_add_js_to_head() {
-		$this->test_can_show_js_with_false_query_param();
+		$this->test_can_show_js_with_true_query_param();
 
 		$out = $this->test_add_js_to_head( '' );
 
@@ -392,7 +392,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_recovery_mode_via_query_param_disables_add_js_to_foot() {
-		$this->test_can_show_js_with_false_query_param();
+		$this->test_can_show_js_with_true_query_param();
 
 		$out = $this->test_add_js_to_foot( '' );
 
@@ -400,7 +400,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_recovery_mode_via_query_param_add_jq_js_to_foot() {
-		$this->test_can_show_js_with_false_query_param();
+		$this->test_can_show_js_with_true_query_param();
 
 		$out = $this->test_add_jq_js_to_foot( '' );
 
