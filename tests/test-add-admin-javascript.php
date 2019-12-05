@@ -125,6 +125,13 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$obj->update_option( $settings, true );
 	}
 
+	protected function fake_current_screen( $screen_id = 'hacky' ) {
+		$this->test_turn_on_admin();
+		set_current_screen( $screen_id );
+		c2c_AddAdminJavaScript::instance()->options_page = $screen_id;
+		return $screen_id;
+	}
+
 
 	//
 	//
@@ -400,6 +407,24 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertEmpty( $out );
 	}
 
+	public function test_recovery_mode_notice_when_js_not_disabled() {
+		$this->fake_current_screen();
+
+		$this->assertEmpty( $this->get_action_output( 'admin_notices' ) );
+	}
+
+	public function test_recovery_mode_notice_when_js_disabled_by_query_param() {
+		$this->fake_current_screen();
+
+		$this->test_can_show_js_with_true_query_param();
+
+		$expected = "				<div class=\"error\">
+					<p><strong>RECOVERY MODE ENABLED:</strong> JavaScript output for this plugin is disabled on this page view.</p>
+				</div>";
+
+		$this->assertEquals( $expected, $this->get_action_output( 'admin_notices' ) );
+	}
+
 	/****************************************
 	 * NOTE: Anything beyond this point will run with the
 	 * C2C_ADD_ADMIN_JAVASCRIPT_DISABLED define and true.
@@ -427,6 +452,16 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$out = $this->test_add_jq_js_to_foot( '' );
 
 		$this->assertEmpty( $out );
+	}
+
+	public function test_recovery_mode_notice_when_js_disabled_by_constant() {
+		$this->fake_current_screen();
+
+		$expected = "				<div class=\"error\">
+					<p><strong>RECOVERY MODE ENABLED:</strong> JavaScript output for this plugin is currently disabled for the entire admin area via use of the <code>C2C_ADD_ADMIN_JAVASCRIPT_DISABLED</code> constant.</p>
+				</div>";
+
+		$this->assertEquals( $expected, $this->get_action_output( 'admin_notices' ) );
 	}
 
 	/*
