@@ -13,7 +13,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		remove_filter( 'c2c_add_admin_js_head',   array( $this, 'add_js' ) );
 		remove_filter( 'c2c_add_admin_js_jq',     array( $this, 'add_js_jq' ) );
 
-		unset( $GLOBALS['wp_scripts']);
+		unset( $GLOBALS['wp_scripts'] );
 		$GLOBALS['wp_scripts'] = new WP_Scripts;
 
 		if ( class_exists( 'c2c_AddAdminJavaScript' ) ) {
@@ -167,8 +167,6 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		c2c_AddAdminJavaScript::instance()->init();
 		c2c_AddAdminJavaScript::instance()->register_filters();
 		c2c_AddAdminJavaScript::instance()->enqueue_js();
-
-		$this->option_name = c2c_AddAdminJavaScript::instance()->admin_options_name;
 
 		$this->assertTrue( is_admin() );
 	}
