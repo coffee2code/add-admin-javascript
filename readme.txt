@@ -5,7 +5,7 @@ Tags: admin, javascript, js, script, admin theme, customization, coffee2code
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.7
-Tested up to: 5.1
+Tested up to: 5.3
 Stable tag: 1.7
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
