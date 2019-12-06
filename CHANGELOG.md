@@ -10,6 +10,7 @@
     * Change: Update unit test install script and bootstrap to use latest WP unit test repo
     * Change: Ensure admin mode is enabled before running certain tests
     * Change: Rename `test_can_show_js_with_false_query_param()` to `test_can_show_js_with_true_query_param()` to better reflect its intent
+    * Change: Use `dirname()` instead of relative path syntax
     * Change: Remove unnecessary action performed during teardown
 * Change: Note compatibility through WP 5.3+
 * Change: Tweak installation instruction

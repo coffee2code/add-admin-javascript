@@ -169,14 +169,13 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 			define( 'WP_ADMIN', true );
 		}
 
-		require( dirname( __FILE__ ) . '/../add-admin-javascript.php' );
+		require( dirname( dirname( __FILE__ ) ) . '/add-admin-javascript.php' );
 		c2c_AddAdminJavaScript::instance()->init();
 		c2c_AddAdminJavaScript::instance()->register_filters();
 		c2c_AddAdminJavaScript::instance()->enqueue_js();
 
 		$this->assertTrue( is_admin() );
 	}
-
 
 	public function test_class_name() {
 		$this->assertTrue( class_exists( 'c2c_AddAdminJavaScript' ) );
