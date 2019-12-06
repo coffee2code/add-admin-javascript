@@ -393,6 +393,21 @@ HTML;
 	}
 
 	/**
+	 * Returns the appropriate 'type' attribute, if needed, for a `script` tag.
+	 *
+	 * If the theme claims support for 'html5', then an empty string is returned
+	 * (since no 'type' attribute is necessary). Otherwise, the 'text/javascript'
+	 * value is supplied for the 'type' attribute.
+	 *
+	 * @since 1.8
+	 *
+	 * @return string The attribute string for the `script` tag.
+	 */
+	public function get_script_attr() {
+		return current_theme_supports( 'html5', 'script' ) ? '' : ' type="text/javascript"';
+	}
+
+	/**
 	 * Outputs JavaScript as header links and/or inline header code.
 	 */
 	public function add_js_to_head() {
@@ -411,9 +426,11 @@ HTML;
 		 */
 		$js = trim( apply_filters( 'c2c_add_admin_js_head', $options['js_head'] . "\n" ) );
 
+		$type_attr = $this->get_script_attr();
+
 		if ( ! empty( $js ) ) {
 			echo "
-			<script>
+			<script{$type_attr}>
 			$js
 			</script>
 			";
@@ -441,9 +458,11 @@ HTML;
 		 */
 		$js = trim( apply_filters( 'c2c_add_admin_js_footer', $options['js_foot'] . "\n" ) );
 
+		$type_attr = $this->get_script_attr();
+
 		if ( ! empty( $js ) ) {
 			echo "
-			<script>
+			<script{$type_attr}>
 			$js
 			</script>
 			";
@@ -452,7 +471,7 @@ HTML;
 		$js = $this->get_jq();
 		if ( ! empty( $js ) ) {
 			echo "
-			<script>
+			<script{$type_attr}>
 				jQuery(document).ready(function($) {
 					$js
 				});

@@ -1,6 +1,7 @@
 # Changelog
 
 ## _(in-progress)_
+* New: Add non-HTML5 compliance by specifying `type` attribute when the theme doesn't explicitly support 'html5'
 * Unit tests:
     * New: Add unit tests for recovery mode's admin notice
     * New: Add assertion that recovery mode is not enabled if query param is present but false

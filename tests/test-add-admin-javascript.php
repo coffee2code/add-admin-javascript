@@ -4,6 +4,12 @@ defined( 'ABSPATH' ) or die();
 
 class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
+	public function setUp() {
+		parent::setUp();
+
+		add_theme_support( 'html5', array( 'script', 'style' ) );
+	}
+
 	public function tearDown() {
 		parent::tearDown();
 
@@ -272,7 +278,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertContains( $this->add_js_footer(), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
-	public function test_add_js_to_head( $expected = false ) {
+	public function test_add_js_to_head( $expected = false, $attr = '' ) {
 		$js = $this->add_js( 'this.head.test();', 'settingfooter' );
 
 		$this->set_option( array( 'js_head' => $js ) );
@@ -285,7 +291,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		if ( false === $expected ) {
 			$expected = "
-			<script>
+			<script{$attr}>
 			{$js}
 			</script>
 			";
@@ -296,7 +302,13 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		return $out;
 	}
 
-	public function test_add_js_to_foot( $expected = false ) {
+	public function test_add_js_to_head_without_html5_support( $expected = false ) {
+		remove_theme_support( 'html5', 'script' );
+
+		return $this->test_add_js_to_head( $expected, ' type="text/javascript"' );
+	}
+
+	public function test_add_js_to_foot( $expected = false, $attr = '' ) {
 		$js = $this->add_js( 'this.foot.test();', 'settingfooter' );
 
 		$this->set_option( array( 'js_foot' => $js, 'js_jq' => '' ) );
@@ -309,7 +321,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		if ( false === $expected ) {
 			$expected = "
-			<script>
+			<script{$attr}>
 			{$js}
 			</script>
 			";
@@ -320,7 +332,13 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		return $out;
 	}
 
-	public function test_add_jq_js_to_foot( $expected = false ) {
+	public function test_add_js_to_foot_without_html5_support( $expected = false ) {
+		remove_theme_support( 'html5', 'script' );
+
+		return $this->test_add_js_to_foot( $expected, ' type="text/javascript"' );
+	}
+
+	public function test_add_jq_js_to_foot( $expected = false, $attr = '' ) {
 		$js = "$('.hide_me').hide();";
 
 		$this->set_option( array( 'js_foot' => '', 'js_jq' => $js ) );
@@ -333,7 +351,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		if ( false === $expected ) {
 			$expected = "
-			<script>
+			<script{$attr}>
 				jQuery(document).ready(function($) {
 					{$js}
 				});
@@ -344,6 +362,12 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertEquals( $expected, $out );
 
 		return $out;
+	}
+
+	public function test_add_jq_js_to_foot_without_html5_support( $expected = false ) {
+		remove_theme_support( 'html5', 'script' );
+
+		return $this->test_add_jq_js_to_foot( $expected, ' type="text/javascript"' );
 	}
 
 	public function test_js_jq_is_added_to_admin_footer() {
