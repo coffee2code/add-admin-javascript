@@ -46,7 +46,7 @@
 
 defined( 'ABSPATH' ) or die();
 
-if ( is_admin() && ! class_exists( 'c2c_AddAdminJavaScript_Plugin_049' ) ) :
+if ( ! class_exists( 'c2c_AddAdminJavaScript_Plugin_049' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 
@@ -523,6 +523,6 @@ HTML;
 
 } // end c2c_AddAdminJavaScript
 
-add_action( 'plugins_loaded', array( 'c2c_AddAdminJavaScript', 'instance' ) );
+add_action( 'admin_init', array( 'c2c_AddAdminJavaScript', 'instance' ) );
 
 endif; // end if !class_exists()

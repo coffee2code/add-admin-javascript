@@ -193,6 +193,10 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertEquals( '1.7', c2c_AddAdminJavaScript::instance()->version() );
 	}
 
+	public function test_hooks_plugins_loaded() {
+		$this->assertEquals( 10, has_action( 'admin_init', array( 'c2c_AddAdminJavaScript', 'instance' ) ) );
+	}
+
 	/**
 	 * @dataProvider get_settings_and_defaults
 	 */
