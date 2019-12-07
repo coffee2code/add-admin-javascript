@@ -190,7 +190,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_version() {
-		$this->assertEquals( '1.8', c2c_AddAdminJavaScript::instance()->version() );
+		$this->assertEquals( '1.8.1', c2c_AddAdminJavaScript::instance()->version() );
 	}
 
 	public function test_hooks_plugins_loaded() {

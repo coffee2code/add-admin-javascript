@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.8.1 _(2019-12-07)_
+* Fix: Fix typo causing PHP warning. Props jhogervorst.
+
 ## 1.8 _(2019-12-06)_
 
 ## Highlights:

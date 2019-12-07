@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.7
 Tested up to: 5.3
-Stable tag: 1.8
+Stable tag: 1.8.1
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -182,6 +182,9 @@ add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 
 == Changelog ==
 
+= 1.8.1 (2019-12-07) =
+* Fix: Fix typo causing PHP warning. Props jhogervorst.
+
 = 1.8 (2019-12-06) =
 
 ## Highlights:
@@ -295,8 +298,11 @@ _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/ad
 
 == Upgrade Notice ==
 
+= 1.8.1 =
+Minor bugfix release: Fixes typo causing PHP warning.
+
 = 1.8 =
-Minor update: added non-HTML5 support when not supported by the theme, modernized and fixed unit tests, noted compatibility through WP 5.3+, and updated copyright date (2020)
+Minor update: added non-HTML5 support when not supported by the theme, modernized and fixed unit tests, noted compatibility through WP 5.3+, and updated copyright date (2020).
 
 = 1.7 =
 Recommended update: added recovery mode, added code editor inputs, tweaked plugin initialization process, updated plugin framework, compatibility is now WP 4.7 through WP 5.1+, updated copyright date (2019), and more documentation and code improvements.
