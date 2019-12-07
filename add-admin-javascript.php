@@ -181,6 +181,10 @@ final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_049 {
 	 * Override the plugin framework's register_filters() to register actions and filters.
 	 */
 	public function register_filters() {
+		if ( ! is_admin() ) {
+			reutrn;
+		}
+
 		add_action( 'admin_enqueue_scripts',      array( $this, 'enqueue_js' ) );
 		add_action( 'admin_enqueue_scripts',      array( $this, 'add_codemirror' ) );
 		add_action( 'admin_head',                 array( $this, 'add_js_to_head' ) );
@@ -523,6 +527,6 @@ HTML;
 
 } // end c2c_AddAdminJavaScript
 
-add_action( 'admin_init', array( 'c2c_AddAdminJavaScript', 'instance' ) );
+add_action( 'plugins_loaded', array( 'c2c_AddAdminJavaScript', 'instance' ) );
 
 endif; // end if !class_exists()
