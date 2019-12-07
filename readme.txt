@@ -24,7 +24,7 @@ Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/add-admin-javascript/
 
 1. Install via the built-in WordPress plugin installer. Or download and unzip `add-admin-javascript.zip` inside the plugins directory for your site (typically `wp-content/plugins/`)
 1. Activate the plugin through the 'Plugins' admin menu in WordPress
-1. Go to "Appearance" -> "Admin JavaScript" and add some JavaScript to be added into all admin pages. (You can also use the "Settings" link in the plugin's entry on the admin "Plugins" page).
+1. Go to "Settings" -> "Admin JavaScript" and add some JavaScript to be added into all admin pages. (You can also use the "Settings" link in the plugin's entry on the admin "Plugins" page).
 
 
 == Frequently Asked Questions ==
