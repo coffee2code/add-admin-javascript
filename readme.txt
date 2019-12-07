@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.7
 Tested up to: 5.3
-Stable tag: 1.7
+Stable tag: 1.8
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -182,6 +182,31 @@ add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 
 == Changelog ==
 
+= 1.8 (2019-12-06) =
+
+## Highlights:
+
+* This minor release adds support for themes that don't explicitly support HTML5, tweaks plugin initialization, modernizes and fixes unit tests, and notes compatibility through WP 5.3+.
+
+## Details:
+
+* New: Add non-HTML5 compliance by specifying `type` attribute when the theme doesn't explicitly support 'html5'
+* Change: Check that code is running in the admin just before registering hooks and not before defining class
+* Unit tests:
+    * New: Add unit tests for recovery mode's admin notice
+    * New: Add assertion that recovery mode is not enabled if query param is present but false
+    * Fix: Don't pass argument to plugin object's `add_js_to_head()` and `add_js_to_food()`, which don't support arguments
+    * Fix: Prevent WP from attempting to print the emoji detection script (which isn't built in the develop.svn repo)
+    * Change: Update unit test install script and bootstrap to use latest WP unit test repo
+    * Change: Ensure admin mode is enabled before running certain tests
+    * Change: Rename `test_can_show_js_with_false_query_param()` to `test_can_show_js_with_true_query_param()` to better reflect its intent
+    * Change: Use `dirname()` instead of relative path syntax
+    * Change: Remove unnecessary action performed during teardown
+* Change: Note compatibility through WP 5.3+
+* Change: Tweak installation instruction
+* Change: Tweak description of "Hooks" section in readme.txt
+* Change: Update copyright date (2020)
+
 = 1.7 (2019-04-09) =
 
 Highlights:
@@ -265,23 +290,13 @@ Details:
 * Change: Remove support for WordPress older than 4.6
 * Change: Update copyright date (2018)
 
-= 1.5 (2016-04-22) =
-* Change: Declare class as final.
-* Change: Update plugin framework to 041:
-    * For a setting that is of datatype array, ensure its default value is an array.
-    * Make `verify_config()` public.
-    * Use `<p class="description">` for input field help text instead of custom styled span.
-    * Remove output of markup for adding icon to setting page header.
-    * Remove styling for .c2c-input-help.
-    * Add braces around the few remaining single line conditionals.
-* Change: Note compatibility through WP 4.5+.
-* Change: Remove 'Domain Path' from plugin header.
-* New: Add LICENSE file.
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/add-admin-javascript/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 1.8 =
+Minor update: added non-HTML5 support when not supported by the theme, modernized and fixed unit tests, noted compatibility through WP 5.3+, and updated copyright date (2020)
 
 = 1.7 =
 Recommended update: added recovery mode, added code editor inputs, tweaked plugin initialization process, updated plugin framework, compatibility is now WP 4.7 through WP 5.1+, updated copyright date (2019), and more documentation and code improvements.

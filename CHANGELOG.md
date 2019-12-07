@@ -1,6 +1,13 @@
 # Changelog
 
-## _(in-progress)_
+## 1.8 _(2019-12-06)_
+
+## Highlights:
+
+* This minor release adds support for themes that don't explicitly support HTML5, tweaks plugin initialization, modernizes and fixes unit tests, and notes compatibility through WP 5.3+.
+
+## Details:
+
 * New: Add non-HTML5 compliance by specifying `type` attribute when the theme doesn't explicitly support 'html5'
 * Change: Check that code is running in the admin just before registering hooks and not before defining class
 * Unit tests:
