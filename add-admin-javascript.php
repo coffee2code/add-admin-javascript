@@ -182,7 +182,7 @@ final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_049 {
 	 */
 	public function register_filters() {
 		if ( ! is_admin() ) {
-			reutrn;
+			return;
 		}
 
 		add_action( 'admin_enqueue_scripts',      array( $this, 'enqueue_js' ) );
