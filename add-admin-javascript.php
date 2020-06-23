@@ -142,7 +142,7 @@ final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_050 {
 				'default'          => '',
 				'datatype'         => 'array',
 				'label'            => __( 'Admin JavaScript Files', 'add-admin-javascript' ),
-				'help'             => __( 'List one URL per line.  The reference can be relative to the root of your site, or a full, absolute URL.  These will be listed in the order listed, and appear in the &lt;head&gt; before the JS defined below.', 'add-admin-javascript' ),
+				'help'             => __( 'List one file per line. The reference can be relative to the root of your site or a full, absolute URL. These will be output in the order listed above and appear before the footer JS defined below.', 'add-admin-javascript' ),
 				'input_attributes' => 'style="width: 98%; white-space: pre; word-wrap: normal; overflow-x: scroll;" rows="8" cols="40"'
 			),
 			'js_head' => array(
