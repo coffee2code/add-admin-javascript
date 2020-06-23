@@ -7,6 +7,7 @@
     * Update copyright date (2020)
     * Note compatibility through WP 5.4+
     * Drop compatibility with version of WP older than 4.9
+* New: Add TODO.md and move existing TODO list from top of main plugin file into it
 * Change: Note compatibility through WP 5.4+
 * Change: Drop compatibility for version of WP older than 4.9
 * Change: Update links to coffee2code.com to be HTTPS

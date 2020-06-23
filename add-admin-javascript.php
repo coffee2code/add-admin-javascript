@@ -22,11 +22,6 @@
 */
 
 /*
- * TODO:
- * - Improve documentation within the help pane.
- */
-
-/*
 	Copyright (c) 2010-2020 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
