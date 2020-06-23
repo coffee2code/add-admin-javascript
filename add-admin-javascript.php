@@ -2,9 +2,9 @@
 /**
  * Plugin Name: Add Admin JavaScript
  * Version:     1.8.1
- * Plugin URI:  http://coffee2code.com/wp-plugins/add-admin-javascript/
+ * Plugin URI:  https://coffee2code.com/wp-plugins/add-admin-javascript/
  * Author:      Scott Reilly
- * Author URI:  http://coffee2code.com/
+ * Author URI:  https://coffee2code.com/
  * Text Domain: add-admin-javascript
  * License:     GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html

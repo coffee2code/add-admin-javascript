@@ -17,7 +17,7 @@ Ever want to introduce custom dynamic functionality to your WordPress admin page
 
 Using this plugin you'll easily be able to define additional JavaScript (inline and/or by URL) to be added to all administration pages. You can define JavaScript to appear inline in the admin head, admin footer (recommended), or in the admin footer within a jQuery `jQuery(document).ready(function($)) {}` section, or reference JavaScript files to be linked in the page header. The referenced JavaScript files will appear in the admin head first, listed in the order defined in the plugin's settings. Then any inline admin head JavaScript is added to the admin head. All values can be filtered for advanced customization (see Filters section).
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/add-admin-javascript/) | [Plugin Directory Page](https://wordpress.org/plugins/add-admin-javascript/) | [GitHub](https://github.com/coffee2code/add-admin-javascript/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](https://coffee2code.com/wp-plugins/add-admin-javascript/) | [Plugin Directory Page](https://wordpress.org/plugins/add-admin-javascript/) | [GitHub](https://github.com/coffee2code/add-admin-javascript/) | [Author Homepage](https://coffee2code.com)
 
 
 == Installation ==
