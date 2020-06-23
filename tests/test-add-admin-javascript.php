@@ -13,12 +13,6 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	public function tearDown() {
 		parent::tearDown();
 
-		remove_filter( 'c2c_add_admin_js',        array( $this, 'add_js' ) );
-		remove_filter( 'c2c_add_admin_js_files',  array( $this, 'add_js_files' ) );
-		remove_filter( 'c2c_add_admin_js_footer', array( $this, 'add_js_footer' ) );
-		remove_filter( 'c2c_add_admin_js_head',   array( $this, 'add_js' ) );
-		remove_filter( 'c2c_add_admin_js_jq',     array( $this, 'add_js_jq' ) );
-
 		unset( $GLOBALS['wp_scripts'] );
 		$GLOBALS['wp_scripts'] = new WP_Scripts;
 
