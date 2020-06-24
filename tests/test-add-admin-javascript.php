@@ -4,10 +4,14 @@ defined( 'ABSPATH' ) or die();
 
 class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
+	protected $obj;
+
 	public function setUp() {
 		parent::setUp();
 
 		add_theme_support( 'html5', array( 'script', 'style' ) );
+
+		$this->obj = c2c_AddAdminJavaScript::instance();
 	}
 
 	public function tearDown() {
@@ -17,7 +21,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$GLOBALS['wp_scripts'] = new WP_Scripts;
 
 		if ( class_exists( 'c2c_AddAdminJavaScript' ) ) {
-			c2c_AddAdminJavaScript::instance()->reset();
+			$this->obj->reset();
 			unset( $_GET[ c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM ] );
 		}
 
@@ -114,7 +118,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 	// Use true for $settings for force use of defaults.
 	public function set_option( $settings = true ) {
-		$obj = c2c_AddAdminJavaScript::instance();
+		$obj = $this->obj;
 
 		if ( true === $settings ) {
 			$defaults = array(
@@ -139,7 +143,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	protected function fake_current_screen( $screen_id = 'hacky' ) {
 		$this->test_turn_on_admin();
 		set_current_screen( $screen_id );
-		c2c_AddAdminJavaScript::instance()->options_page = $screen_id;
+		$this->obj->options_page = $screen_id;
 		return $screen_id;
 	}
 
@@ -174,11 +178,11 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	}
 
 	public function test_plugin_framework_version() {
-		$this->assertEquals( '050', c2c_AddAdminJavaScript::instance()->c2c_plugin_version() );
+		$this->assertEquals( '050', $this->obj->c2c_plugin_version() );
 	}
 
 	public function test_version() {
-		$this->assertEquals( '1.8.1', c2c_AddAdminJavaScript::instance()->version() );
+		$this->assertEquals( '1.8.1', $this->obj->version() );
 	}
 
 	public function test_hooks_plugins_loaded() {
@@ -189,7 +193,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	 * @dataProvider get_settings_and_defaults
 	 */
 	public function test_default_settings( $setting ) {
-		$options = c2c_AddAdminJavaScript::instance()->get_options();
+		$options = $this->obj->get_options();
 
 		$this->assertEmpty( $options[ $setting ] );
 	}
@@ -204,9 +208,9 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		}
 
 		require( dirname( dirname( __FILE__ ) ) . '/add-admin-javascript.php' );
-		c2c_AddAdminJavaScript::instance()->init();
-		c2c_AddAdminJavaScript::instance()->register_filters();
-		c2c_AddAdminJavaScript::instance()->enqueue_js();
+		$this->obj->init();
+		$this->obj->register_filters();
+		$this->obj->enqueue_js();
 
 		$this->assertTrue( is_admin() );
 	}
@@ -217,7 +221,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	public function test_default_hooks( $hook_type, $hook, $function, $priority = 10, $class_method = true ) {
 		$this->test_turn_on_admin();
 
-		$callback = $class_method ? array( c2c_AddAdminJavaScript::instance(), $function ) : $function;
+		$callback = $class_method ? array( $this->obj, $function ) : $function;
 
 		$prio = $hook_type === 'action' ?
 			has_action( $hook, $callback ) :
@@ -243,14 +247,14 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->set_option();
 		$this->test_turn_on_admin();
 
-		$this->assertContains( 'http://test.example.org/js/sample.js?ver=' . c2c_AddAdminJavaScript::instance()->version(), $this->get_action_output( 'admin_print_footer_scripts' ) );
+		$this->assertContains( 'http://test.example.org/js/sample.js?ver=' . $this->obj->version(), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	public function test_ver_query_arg_added_for_relative_links() {
 		$this->set_option();
 		$this->test_turn_on_admin();
 
-		$this->assertContains( '/js/site-relative.js?ver=' . c2c_AddAdminJavaScript::instance()->version(), $this->get_action_output( 'admin_print_footer_scripts' ) );
+		$this->assertContains( '/js/site-relative.js?ver=' . $this->obj->version(), $this->get_action_output( 'admin_print_footer_scripts' ) );
 	}
 
 	public function test_ver_query_arg_not_added_if_link_already_has_it() {
@@ -311,7 +315,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->test_turn_on_admin();
 
 		ob_start();
-		c2c_AddAdminJavaScript::instance()->add_js_to_head();
+		$this->obj->add_js_to_head();
 		$out = ob_get_contents();
 		ob_end_clean();
 
@@ -341,7 +345,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->test_turn_on_admin();
 
 		ob_start();
-		c2c_AddAdminJavaScript::instance()->add_js_to_foot();
+		$this->obj->add_js_to_foot();
 		$out = ob_get_contents();
 		ob_end_clean();
 
@@ -371,7 +375,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->test_turn_on_admin();
 
 		ob_start();
-		c2c_AddAdminJavaScript::instance()->add_js_to_foot();
+		$this->obj->add_js_to_foot();
 		$out = ob_get_contents();
 		ob_end_clean();
 
@@ -417,18 +421,18 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		$this->assertEquals(
 			$url,
-			c2c_AddAdminJavaScript::instance()->remove_query_param_from_redirects( $url . '&' . c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM . '=1' )
+			$this->obj->remove_query_param_from_redirects( $url . '&' . c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM . '=1' )
 		);
 	}
 
 	public function test_can_show_js() {
 		$this->test_turn_on_admin();
 
-		$this->assertTrue( c2c_AddAdminJavaScript::instance()->can_show_js() );
+		$this->assertTrue( $this->obj->can_show_js() );
 
 		$_GET[ c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM ] = '0';
 
-		$this->assertTrue( c2c_AddAdminJavaScript::instance()->can_show_js() );
+		$this->assertTrue( $this->obj->can_show_js() );
 	}
 
 	public function test_can_show_js_with_true_query_param() {
@@ -436,7 +440,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		$_GET[ c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM ] = '1';
 
-		$this->assertFalse( c2c_AddAdminJavaScript::instance()->can_show_js() );
+		$this->assertFalse( $this->obj->can_show_js() );
 	}
 
 	public function test_recovery_mode_via_query_param_disables_add_js_to_head() {
@@ -491,7 +495,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 		define( 'C2C_ADD_ADMIN_JAVASCRIPT_DISABLED', true );
 
-		$this->assertFalse( c2c_AddAdminJavaScript::instance()->can_show_js() );
+		$this->assertFalse( $this->obj->can_show_js() );
 	}
 
 	public function test_recovery_mode_via_constant_disables_add_js_to_head() {
@@ -533,7 +537,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	public function test_does_not_immediately_store_default_settings_in_db() {
 		$option_name = c2c_AddAdminJavaScript::SETTING_NAME;
 		// Get the options just to see if they may get saved.
-		$options     = c2c_AddAdminJavaScript::instance()->get_options();
+		$options     = $this->obj->get_options();
 
 		$this->assertFalse( get_option( $option_name ) );
 	}
@@ -541,7 +545,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 
 	public function test_uninstall_deletes_option() {
 		$option_name = c2c_AddAdminJavaScript::SETTING_NAME;
-		$options     = c2c_AddAdminJavaScript::instance()->get_options();
+		$options     = $this->obj->get_options();
 
 		// Explicitly set an option to ensure options get saved to the database.
 		$this->set_option( array( 'js_head' => 'alert("Hi");' ) );
