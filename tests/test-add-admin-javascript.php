@@ -493,6 +493,18 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertEquals( $expected, $this->get_action_output( 'admin_notices' ) );
 	}
 
+	/*
+	 * options_page_description()
+	 */
+
+	public function test_options_page_description() {
+		$expected = '<h1>Add Admin JavaScript Settings</h1>
+<p class="see-help">See the "Help" link to the top-right of the page for more help.</p>
+<p>Add additional JavaScript to your admin pages.</p><p>See the "Advanced Tips" tab in the "Help" section above for info on how to use the plugin to programmatically customize JavaScript.</p>';
+
+		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '$~', $this->obj->options_page_description() );
+	}
+
 	/****************************************
 	 * NOTE: Anything beyond this point will run with the
 	 * C2C_ADD_ADMIN_JAVASCRIPT_DISABLED define and true.

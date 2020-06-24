@@ -13,6 +13,7 @@
 * Change: Drop compatibility for version of WP older than 4.9
 * Change: Update links to coffee2code.com to be HTTPS
 * Unit tests:
+    * New: Add tests for `options_page_description()`
     * New: Add test for default hooks
     * New: Add tests for setting and query param names
     * Change: Remove unnecessary unregistering of hooks in `tearDown()`
