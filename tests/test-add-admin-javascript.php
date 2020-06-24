@@ -189,6 +189,14 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->assertEquals( 10, has_action( 'plugins_loaded', array( 'c2c_AddAdminJavaScript', 'instance' ) ) );
 	}
 
+	public function test_setting_name() {
+		$this->assertEquals( 'c2c_add_admin_javascript', $this->obj::SETTING_NAME );
+	}
+
+	public function test_query_param_name() {
+		$this->assertEquals( 'c2c-no-js', $this->obj::NO_JS_QUERY_PARAM );
+	}
+
 	/**
 	 * @dataProvider get_settings_and_defaults
 	 */
