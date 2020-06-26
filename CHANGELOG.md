@@ -17,6 +17,7 @@
     * New: Add tests for `options_page_description()`
     * New: Add test for default hooks
     * New: Add tests for setting and query param names
+    * New: Label groupings of tests
     * Change: Remove unnecessary unregistering of hooks in `tearDown()`
     * Change: Move `test_turn_on_admin()` until just before first needed now that other tests can run before it
     * Change: Store plugin instance in class variable to simplify referencing it
