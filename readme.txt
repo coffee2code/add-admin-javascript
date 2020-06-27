@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 1.8.1
+Stable tag: 1.9
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -210,93 +210,13 @@ add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 * Change: Tweak description of "Hooks" section in readme.txt
 * Change: Update copyright date (2020)
 
-= 1.7 (2019-04-09) =
-
-Highlights:
-
-* This release adds a recovery mode to disable output of JavaScript via the plugin (and an admin notice when it is active), replaces code input fields with code editor (with syntax highlight, syntax checking, code completion, and more), improves documentation, updates the plugin framework, notes compatibility through WP 5.1+, drops compatibility with versions of WP older than 4.7, and more documentation and code improvements.
-
-Details:
-
-* New: Add syntax highlighting to JavaScript input fields
-    * Adds code highlighting, syntax checking, and other features
-* New: Add recovery mode to be able to disable output of JavaScript via the plugin
-    * Add support for `c2c-no-js` query parameter for enabling recovery mode
-    * Add support for `C2C_ADD_ADMIN_JAVASCRIPT_DISABLED` constant for enabling recovery mode
-    * Display admin notice when recovery mode is active
-    * Add `can_show_js()`, `remove_query_param_from_redirects()`, `recovery_mode_notice()`
-* Change: Initialize plugin on `plugins_loaded` action instead of on load
-* Change: Update plugin framework to 049
-    * 049:
-    * Correct last arg in call to `add_settings_field()` to be an array
-    * Wrap help text for settings in `label` instead of `p`
-    * Only use `label` for help text for checkboxes, otherwise use `p`
-    * Ensure a `textarea` displays as a block to prevent orphaning of subsequent help text
-    * Note compatibility through WP 5.1+
-    * Update copyright date (2019)
-    * 048:
-    * When resetting options, delete the option rather than setting it with default values
-    * Prevent double "Settings reset" admin notice upon settings reset
-    * 047:
-    * Don't save default setting values to database on install
-    * Change "Cheatin', huh?" error messages to "Something went wrong.", consistent with WP core
-    * Note compatibility through WP 4.9+
-    * Drop compatibility with version of WP older than 4.7
-* Change: Remove unnecessary `type='text/javascript'` attribute from `<script>` tags
-* New: Add README.md file
-* New: Add CHANGELOG.md file and move all but most recent changelog entries into it
-* New: Add FAQ entry describing ways to fix having potentially crippled the admin
-* New: Add inline documentation for hooks
-* New: Add GitHub link to readme
-* Unit tests:
-    * Change: Improve tests for settings handling
-    * Change: Update `set_option()` to accept an array of setting values to use
-    * New: Add unit tests for `add_js_to_head()`, `add_js_to_foot()`
-    * New: Add unit test for defaults for settings
-    * Remove: Delete `setUp()` and invoke `setup_options()` within each test as needed
-    * Remove: Delete private object variable for storing setting name
-* Change: Store setting name in constant
-* Change: Improve documentation for hooks within readme.txt
-* Change: Use alternative example remote JS library to the defunct Yahoo UI library
-* Change: Note compatibility through WP 5.1+
-* Change: Drop compatibility with version of WP older than 4.7
-* Change: Rename readme.txt section from 'Filters' to 'Hooks'
-* Change: Modify formatting of hook name in readme to prevent being uppercased when shown in the Plugin Directory
-* Change: Update installation instruction to prefer built-in installer over .zip file
-* Change: Update copyright date (2019)
-* Change: Update License URI to be HTTPS
-
-= 1.6 (2017-11-03) =
-* Change: Update plugin framework to 046
-    * 046:
-    * Fix `reset_options()` to reference instance variable `$options`.
-	* Note compatibility through WP 4.7+.
-	* Update copyright date (2017)
-    * 045:
-    * Ensure `reset_options()` resets values saved in the database.
-    * 044:
-    * Add `reset_caches()` to clear caches and memoized data. Use it in `reset_options()` and `verify_config()`.
-    * Add `verify_options()` with logic extracted from `verify_config()` for initializing default option attributes.
-    * Add `add_option()` to add a new option to the plugin's configuration.
-    * Add filter 'sanitized_option_names' to allow modifying the list of whitelisted option names.
-    * Change: Refactor `get_option_names()`.
-    * 043:
-    * Disregard invalid lines supplied as part of hash option value.
-    * 042:
-    * Update `disable_update_check()` to check for HTTP and HTTPS for plugin update check API URL.
-    * Translate "Donate" in footer message.
-* Change: Update unit test bootstrap
-    * Default `WP_TESTS_DIR` to `/tmp/wordpress-tests-lib` rather than erroring out if not defined via environment variable
-    * Enable more error output for unit tests
-* Change: Align config array elements
-* Change: Note compatibility through WP 4.9+
-* Change: Remove support for WordPress older than 4.6
-* Change: Update copyright date (2018)
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/add-admin-javascript/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 1.9 =
+Minor update: updated plugin framework, added a TODO.md file, updated a few URLs to be HTTPS, expanded unit testing, updated compatibility to be WP 4.9 through 5.4+, and minor behind-the-scenes tweaks.
 
 = 1.8.1 =
 Minor bugfix release: Fixes typo causing PHP warning.
