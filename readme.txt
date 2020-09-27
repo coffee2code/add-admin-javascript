@@ -182,6 +182,35 @@ add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 
 == Changelog ==
 
+= 1.9 (2020-06-26) =
+
+### Highlights:
+
+This minor release updates its plugin framework, adds a TODO.md file, updates a few URLs to be HTTPS, expands unit testing, updates compatibility to be WP 4.9 through 5.4+, and minor behind-the-scenes tweaks.
+
+### Details:
+* Change: Change class names used for admin notice to match current WP convention
+* Change: Update plugin framework to 050
+    * Allow a hash entry to literally have '0' as a value without being entirely omitted when saved
+    * Output donation markup using `printf()` rather than using string concatenation
+    * Update copyright date (2020)
+    * Note compatibility through WP 5.4+
+    * Drop compatibility with version of WP older than 4.9
+* New: Add TODO.md and move existing TODO list from top of main plugin file into it (and add more items to it)
+* Change: Tweak help text for 'files' setting for better phrasing and to remove extra sentence spaces
+* Change: Note compatibility through WP 5.4+
+* Change: Drop compatibility for version of WP older than 4.9
+* Change: Update links to coffee2code.com to be HTTPS
+* Unit tests:
+    * New: Add tests for `options_page_description()`
+    * New: Add test for default hooks
+    * New: Add tests for setting and query param names
+    * New: Label groupings of tests
+    * Change: Remove unnecessary unregistering of hooks in `tearDown()`
+    * Change: Move `test_turn_on_admin()` until just before first needed now that other tests can run before it
+    * Change: Store plugin instance in class variable to simplify referencing it
+    * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests (and delete commented-out code)
+
 = 1.8.1 (2019-12-07) =
 * Fix: Fix typo causing PHP warning. Props jhogervorst.
 
