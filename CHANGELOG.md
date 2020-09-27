@@ -14,6 +14,7 @@
     * Change: Move `tests/bootstrap.php` to `phpunit/`
     * Change: Move `tests/` to `phpunit/tests/`
     * Change: Rename `phpunit.xml` to `phpunit.xml.dist` per best practices
+* Change: Add missing changelog entry for v1.9 release into readme.txt
 
 ## 1.9 _(2020-06-26)_
 
