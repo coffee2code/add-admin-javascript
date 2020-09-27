@@ -215,7 +215,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 			define( 'WP_ADMIN', true );
 		}
 
-		require( dirname( dirname( __FILE__ ) ) . '/add-admin-javascript.php' );
+		require( dirname( dirname( dirname( __FILE__ ) ) ) . '/add-admin-javascript.php' );
 		$this->obj->init();
 		$this->obj->register_filters();
 		$this->obj->enqueue_js();
