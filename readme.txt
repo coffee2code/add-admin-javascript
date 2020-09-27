@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 1.9
+Stable tag: 1.9.1
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -182,6 +182,22 @@ add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 
 == Changelog ==
 
+= 1.9.1 (2020-09-26) =
+* Change: Update plugin framework to 051
+    * Allow setting integer input value to include commas
+    * Use `number_format_i18n()` to format integer value within input field
+    * Update link to coffee2code.com to be HTTPS
+    * Update `readme_url()` to refer to plugin's readme.txt on plugins.svn.wordpress.org
+    * Remove defunct line of code
+* Change: Note compatibility through WP 5.5+
+* Change: Restructure unit test file structure
+    * New: Create new subdirectory `phpunit/` to house all files related to unit testing
+    * Change: Move `bin/` to `phpunit/bin/`
+    * Change: Move `tests/bootstrap.php` to `phpunit/`
+    * Change: Move `tests/` to `phpunit/tests/`
+    * Change: Rename `phpunit.xml` to `phpunit.xml.dist` per best practices
+* Change: Add missing changelog entry for v1.9 release into readme.txt
+
 = 1.9 (2020-06-26) =
 
 ### Highlights:
@@ -214,35 +230,13 @@ This minor release updates its plugin framework, adds a TODO.md file, updates a 
 = 1.8.1 (2019-12-07) =
 * Fix: Fix typo causing PHP warning. Props jhogervorst.
 
-= 1.8 (2019-12-06) =
-
-## Highlights:
-
-* This minor release adds support for themes that don't explicitly support HTML5, tweaks plugin initialization, modernizes and fixes unit tests, and notes compatibility through WP 5.3+.
-
-## Details:
-
-* New: Add non-HTML5 compliance by specifying `type` attribute when the theme doesn't explicitly support 'html5'
-* Change: Check that code is running in the admin just before registering hooks and not before defining class
-* Unit tests:
-    * New: Add unit tests for recovery mode's admin notice
-    * New: Add assertion that recovery mode is not enabled if query param is present but false
-    * Fix: Don't pass argument to plugin object's `add_js_to_head()` and `add_js_to_food()`, which don't support arguments
-    * Fix: Prevent WP from attempting to print the emoji detection script (which isn't built in the develop.svn repo)
-    * Change: Update unit test install script and bootstrap to use latest WP unit test repo
-    * Change: Ensure admin mode is enabled before running certain tests
-    * Change: Rename `test_can_show_js_with_false_query_param()` to `test_can_show_js_with_true_query_param()` to better reflect its intent
-    * Change: Use `dirname()` instead of relative path syntax
-    * Change: Remove unnecessary action performed during teardown
-* Change: Note compatibility through WP 5.3+
-* Change: Tweak installation instruction
-* Change: Tweak description of "Hooks" section in readme.txt
-* Change: Update copyright date (2020)
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/add-admin-javascript/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 1.9.1 =
+Trivial update: Updated plugin framework to version 051, restructured unit test file structure, and noted compatibility through WP 5.5+.
 
 = 1.9 =
 Minor update: updated plugin framework, added a TODO.md file, updated a few URLs to be HTTPS, expanded unit testing, updated compatibility to be WP 4.9 through 5.4+, and minor behind-the-scenes tweaks.
