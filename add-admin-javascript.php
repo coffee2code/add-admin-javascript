@@ -359,6 +359,11 @@ HTML;
 		$options = $this->get_options();
 
 		if ( $this->jq === false || empty( $this->jq ) ) {
+			$js_jq = $options['js_jq'];
+			if ( $js_jq ) {
+				$js_jq .= "\n";
+			}
+
 			/**
 			 * Filters the JavaScript that should be added directly to the admin page
 			 * footer within a jQuery document ready function.
@@ -368,7 +373,7 @@ HTML;
 			 * @param string $files JavaScript code (without `<script>` tags or jQuery
 			 *                      document ready function).
 			 */
-			$this->jq = trim( apply_filters( 'c2c_add_admin_js_jq', $options['js_jq'] . "\n" ) );
+			$this->jq = trim( apply_filters( 'c2c_add_admin_js_jq', $js_jq ) );
 		}
 
 		return $this->jq;
@@ -471,6 +476,11 @@ HTML;
 
 		$options = $this->get_options();
 
+		$js_head = $options['js_head'];
+		if ( $js_head ) {
+			$js_head .= "\n";
+		}
+
 		/**
 		 * Filters the JavaScript that should be added directly to the admin page head.
 		 *
@@ -478,7 +488,7 @@ HTML;
 		 *
 		 * @param string $files JavaScript code (without `<script>` tags).
 		 */
-		$js = trim( apply_filters( 'c2c_add_admin_js_head', $options['js_head'] . "\n" ) );
+		$js = trim( apply_filters( 'c2c_add_admin_js_head', $js_head ) );
 
 		if ( ! empty( $js ) ) {
 			echo "
@@ -501,6 +511,11 @@ HTML;
 
 		$options = $this->get_options();
 
+		$js_foot = $options['js_foot'];
+		if ( $js_foot ) {
+			$js_foot .= "\n";
+		}
+
 		/**
 		 * Filters the JavaScript that should be added directly to the admin footer.
 		 *
@@ -508,7 +523,7 @@ HTML;
 		 *
 		 * @param string $files JavaScript code (without `<script>` tags).
 		 */
-		$js = trim( apply_filters( 'c2c_add_admin_js_footer', $options['js_foot'] . "\n" ) );
+		$js = trim( apply_filters( 'c2c_add_admin_js_footer', $js_foot ) );
 
 		if ( ! empty( $js ) ) {
 			echo "
