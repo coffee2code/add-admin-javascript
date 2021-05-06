@@ -352,7 +352,7 @@ HTML;
 	}
 
 	/**
-	 * Obtain the jQuery JavaScript, if any.  Needed since it is requested in two
+	 * Obtain the jQuery JavaScript, if any. Needed since it is requested in two
 	 * functions so it should be memoizable.
 	 */
 	public function get_jq() {
@@ -500,9 +500,7 @@ HTML;
 	}
 
 	/**
-	 * Outputs JavaScript into footer as regular JavaScript and/or within a jQuery ready
-	 *
-	 * @return void (Text will be echoed.)
+	 * Outputs JavaScript into footer as regular JavaScript and/or within a jQuery ready.
 	 */
 	public function add_js_to_foot() {
 		if ( ! $this->can_show_js() ) {
