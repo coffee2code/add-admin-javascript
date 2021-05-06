@@ -41,11 +41,11 @@
 
 defined( 'ABSPATH' ) or die();
 
-if ( ! class_exists( 'c2c_AddAdminJavaScript_Plugin_051' ) ) :
+if ( ! class_exists( 'c2c_Plugin_061' ) ) :
 
 require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'c2c-plugin.php' );
 
-final class c2c_AddAdminJavaScript extends c2c_AddAdminJavaScript_Plugin_051 {
+final class c2c_AddAdminJavaScript extends c2c_Plugin_061 {
 
 	/**
 	 * Name of plugin's setting.
