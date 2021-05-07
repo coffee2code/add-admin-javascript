@@ -24,6 +24,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		}
 
 		wp_dequeue_script( 'jquery' );
+		wp_dequeue_script( 'code-editor' );
 		foreach ( self::add_js_files( array() ) as $file ) {
 			$key = 'add-admin-javascript' . sanitize_key( $file );
 			wp_dequeue_script( $key );
@@ -529,6 +530,23 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 		$this->set_option( array( 'js_foot' => '', 'js_jq' => "$('.hide_me').hide();" ) );
 		$this->test_turn_on_admin();
 		$this->obj->enqueue_js();
+
+		$this->assertTrue( wp_script_is( $key, 'registered' ) );
+		$this->assertTrue( wp_script_is( $key, 'enqueued' ) );
+	}
+
+	/*
+	 * add_codemirror()
+	 */
+	public function test_enqueue_admin_js_with_code_editor() {
+		$key = 'code-editor';
+
+		$this->assertTrue( wp_script_is( $key, 'registered' ) );
+		$this->assertFalse( wp_script_is( $key, 'enqueued' ) );
+
+		$this->set_option();
+		$this->test_turn_on_admin();
+		$this->obj->add_codemirror();
 
 		$this->assertTrue( wp_script_is( $key, 'registered' ) );
 		$this->assertTrue( wp_script_is( $key, 'enqueued' ) );
