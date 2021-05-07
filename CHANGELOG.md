@@ -34,6 +34,7 @@
 * Change: Note compatibility through WP 5.7+
 * Change: Update copyright date (2021)
 * Change: Tweak some inline function documentation
+* Change: Unit tests: Add tests for JS files getting registered and enqueued
 
 ## 1.9.1 _(2020-09-26)_
 * Change: Update plugin framework to 051

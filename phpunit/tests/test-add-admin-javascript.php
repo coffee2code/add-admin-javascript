@@ -23,6 +23,11 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 			unset( $_GET[ c2c_AddAdminJavaScript::NO_JS_QUERY_PARAM ] );
 		}
 
+		wp_dequeue_script( 'jquery' );
+		foreach ( self::add_js_files( array() ) as $file ) {
+			$key = 'add-admin-javascript' . sanitize_key( $file );
+			wp_dequeue_script( $key );
+		}
 	}
 
 
@@ -495,6 +500,38 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 <p>Add additional JavaScript to your admin pages.</p><p>See the "Advanced Tips" tab in the "Help" section above for info on how to use the plugin to programmatically customize JavaScript.</p>';
 
 		$this->expectOutputRegex( '~^' . preg_quote( $expected ) . '$~', $this->obj->options_page_description() );
+	}
+
+	/*
+	 * enqueue_admin_js()
+	 */
+
+	public function test_enqueue_admin_js() {
+		$key = 'add-admin-javascript' . sanitize_key( 'root-relative.js' );
+
+		$this->assertFalse( wp_script_is( $key, 'registered' ) );
+		$this->assertFalse( wp_script_is( $key, 'enqueued' ) );
+
+		$this->set_option();
+		$this->test_turn_on_admin();
+		$this->obj->enqueue_js();
+
+		$this->assertTrue( wp_script_is( $key, 'registered' ) );
+		$this->assertTrue( wp_script_is( $key, 'enqueued' ) );
+	}
+
+	public function test_enqueue_admin_js_with_jquery() {
+		$key = 'jquery';
+
+		$this->assertTrue( wp_script_is( $key, 'registered' ) );
+		$this->assertFalse( wp_script_is( $key, 'enqueued' ) );
+
+		$this->set_option( array( 'js_foot' => '', 'js_jq' => "$('.hide_me').hide();" ) );
+		$this->test_turn_on_admin();
+		$this->obj->enqueue_js();
+
+		$this->assertTrue( wp_script_is( $key, 'registered' ) );
+		$this->assertTrue( wp_script_is( $key, 'enqueued' ) );
 	}
 
 	/****************************************
