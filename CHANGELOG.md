@@ -37,7 +37,7 @@
 * Change: Tweak some inline function documentation
 * Unit tests:
     * New: Add tests for JS files getting registered and enqueued
-    * New: Add test for `add_codemirror()`
+    * New: Add tests for `add_codemirror()`
 
 ## 1.9.1 _(2020-09-26)_
 * Change: Update plugin framework to 051
