@@ -551,7 +551,8 @@ HTML;
 	 */
 	public function add_codemirror() {
 		// Bail if not on the plugin setting page.
-		if ( get_current_screen() && $this->options_page !== get_current_screen()->id ) {
+		$current_screen = get_current_screen();
+		if ( ! $current_screen || $this->options_page !== $current_screen->id ) {
 			return;
 		}
 
