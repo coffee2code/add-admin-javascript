@@ -415,7 +415,8 @@ HTML;
 				if ( $file && $file[0] !== '/' && false === strpos( $file, '//' ) ) {
 					$file = '/' . $file;
 				}
-				wp_enqueue_script( $this->id_base . sanitize_key( $file ), $file, array(), $version, true );
+
+				wp_enqueue_script( $this->id_base . '-' . sanitize_key( $file ), $file, array(), $version, true );
 			}
 		}
 	}

@@ -30,6 +30,7 @@
     * Update `readme_url()` to refer to plugin's readme.txt on plugins.svn.wordpress.org
     * Remove defunct line of code
 * Change: Prevent appending newline to value of setting passed to filter unless an actual value was configured
+* Change: Add separator character between merged strings used for the script handle when enqueuing
 * Change: Move translation of all parent class strings into main plugin file
 * Change: Note compatibility through WP 5.7+
 * Change: Update copyright date (2021)

@@ -508,7 +508,7 @@ class Add_Admin_JavaScript_Test extends WP_UnitTestCase {
 	 */
 
 	public function test_enqueue_admin_js() {
-		$key = 'add-admin-javascript' . sanitize_key( 'root-relative.js' );
+		$key = 'add-admin-javascript-' . sanitize_key( 'root-relative.js' );
 
 		$this->assertFalse( wp_script_is( $key, 'registered' ) );
 		$this->assertFalse( wp_script_is( $key, 'enqueued' ) );
