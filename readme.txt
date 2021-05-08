@@ -199,12 +199,12 @@ add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 * Change: Add missing changelog entry for v1.9 release into readme.txt
 
 = 1.9 (2020-06-26) =
-
-### Highlights:
+Highlights:
 
 This minor release updates its plugin framework, adds a TODO.md file, updates a few URLs to be HTTPS, expands unit testing, updates compatibility to be WP 4.9 through 5.4+, and minor behind-the-scenes tweaks.
 
-### Details:
+Details:
+
 * Change: Change class names used for admin notice to match current WP convention
 * Change: Update plugin framework to 050
     * Allow a hash entry to literally have '0' as a value without being entirely omitted when saved
