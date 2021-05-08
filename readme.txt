@@ -6,7 +6,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 4.9
 Tested up to: 5.7
-Stable tag: 1.9.1
+Stable tag: 2.0
 
 Interface for easily defining additional JavaScript (inline and/or by URL) to be added to all administration pages.
 
@@ -182,6 +182,55 @@ add_filter( 'c2c_add_admin_js_jq', 'my_add_jq' );
 
 == Changelog ==
 
+= 2.0 (2021-05-08) =
+Highlights:
+
+This recommended minor release updates its plugin framework, restructures unit test files, notes compatibility through 5.7+, and minor behind-the-scenes tweaks.
+
+Details:
+
+* Change: Outright support HTML5 rather than check for theme support of HTML5, since that isn't relevant to admin
+* Change: Update plugin framework to 061
+    * 061:
+    * Fix bug preventing settings from getting saved
+    * 060:
+    * Rename class from `c2c_{PluginName}_Plugin_051` to `c2c_Plugin_060`
+    * Move string translation handling into inheriting class making the plugin framework code plugin-agnostic
+        * Add abstract function `get_c2c_string()` as a getter for translated strings
+        * Replace all existing string usage with calls to `get_c2c_string()`
+    * Handle WordPress's deprecation of the use of the term "whitelist"
+        * Change: Rename `whitelist_options()` to `allowed_options()`
+        * Change: Use `add_allowed_options()` instead of deprecated `add_option_whitelist()` for WP 5.5+
+        * Change: Hook `allowed_options` filter instead of deprecated `whitelist_options` for WP 5.5+
+    * New: Add initial unit tests (currently just covering `is_wp_version_cmp()` and `get_c2c_string()`)
+    * Add `is_wp_version_cmp()` as a utility to compare current WP version against a given WP version
+    * Refactor `contextual_help()` to be easier to read, and correct function docblocks
+    * Don't translate urlencoded donation email body text
+    * Add inline comments for translators to clarify purpose of placeholders
+    * Change PHP package name (make it singular)
+    * Tweak inline function description
+    * Note compatibility through WP 5.7+
+    * Update copyright date (2021)
+    * 051:
+    * Allow setting integer input value to include commas
+    * Use `number_format_i18n()` to format integer value within input field
+    * Update link to coffee2code.com to be HTTPS
+    * Update `readme_url()` to refer to plugin's readme.txt on plugins.svn.wordpress.org
+    * Remove defunct line of code
+* Change: Prevent appending newline to value of setting passed to filter unless an actual value was configured
+* Change: Add separator character between merged strings used for the script handle when enqueuing
+* Change: Move translation of all parent class strings into main plugin file
+* Change: Tweak conditional checks to be more succinct
+* Change: Ensure there's a current screen before attempting to get one of its properties
+* Change: Note compatibility through WP 5.7+
+* Change: Update copyright date (2021)
+* Change: Tweak some inline function documentation
+* Unit tests:
+    * New: Add tests for JS files getting registered and enqueued
+    * New: Add tests for `add_codemirror()`
+    * Change: Restructure unit test directories and files into `tests/` top-level directory
+    * Change: In bootstrap, store path to plugin file constant so its value can be used within that file and in test file
+
 = 1.9.1 (2020-09-26) =
 * Change: Update plugin framework to 051
     * Allow setting integer input value to include commas
@@ -227,13 +276,13 @@ Details:
     * Change: Store plugin instance in class variable to simplify referencing it
     * Change: Use HTTPS for link to WP SVN repository in bin script for configuring unit tests (and delete commented-out code)
 
-= 1.8.1 (2019-12-07) =
-* Fix: Fix typo causing PHP warning. Props jhogervorst.
-
 _Full changelog is available in [CHANGELOG.md](https://github.com/coffee2code/add-admin-javascript/blob/master/CHANGELOG.md)._
 
 
 == Upgrade Notice ==
+
+= 2.0 =
+Recommended minor update: updated plugin framework, restructured unit test files, noted compatibility through WP 5.7+, and updated copyright date (2021).
 
 = 1.9.1 =
 Trivial update: Updated plugin framework to version 051, restructured unit test file structure, and noted compatibility through WP 5.5+.
