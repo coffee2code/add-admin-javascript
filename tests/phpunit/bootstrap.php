@@ -5,7 +5,7 @@
  * @package Add_Admin_JavaScript
  */
 
-define( 'ADD_ADMIN_JAVASCRIPT_PLUGIN_FILE', dirname( dirname( __FILE__ ) ) . '/add-admin-javascript.php' );
+define( 'ADD_ADMIN_JAVASCRIPT_PLUGIN_FILE', dirname( __FILE__, 3 ) . '/add-admin-javascript.php' );
 
 ini_set( 'display_errors', 'on' );
 error_reporting( E_ALL );
