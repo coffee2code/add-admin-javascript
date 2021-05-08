@@ -64,7 +64,7 @@ You can hook all the plugin's filters and determine the current user to decide w
 
 = How do I disable syntax highlighting? =
 
-The plugin's syntax highlighting of JavaScript (available on WP 4.9+) honors the built-in setting for whether syntax highlighting should be enabled or not.
+The plugin's syntax highlighting of JavaScript (available as of WP 4.9) honors the built-in setting for whether syntax highlighting should be enabled or not.
 
 To disable syntax highlighting, go to your profile page. Next to "Syntax Highlighting", click the checkbox labeled "Disable syntax highlighting when editing code". Note that this checkbox disables syntax highlighting throughout the admin interface and not just specifically for the plugin's settings page.
 
