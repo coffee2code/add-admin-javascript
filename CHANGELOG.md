@@ -40,6 +40,7 @@
 * Unit tests:
     * New: Add tests for JS files getting registered and enqueued
     * New: Add tests for `add_codemirror()`
+    * Change: In bootstrap, store path to plugin file constant so its value can be used within that file and in test file
 
 ## 1.9.1 _(2020-09-26)_
 * Change: Update plugin framework to 051

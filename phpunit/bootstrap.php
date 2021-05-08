@@ -5,6 +5,8 @@
  * @package Add_Admin_JavaScript
  */
 
+define( 'ADD_ADMIN_JAVASCRIPT_PLUGIN_FILE', dirname( dirname( __FILE__ ) ) . '/add-admin-javascript.php' );
+
 ini_set( 'display_errors', 'on' );
 error_reporting( E_ALL );
 
@@ -20,7 +22,7 @@ require_once $_tests_dir . '/tests/phpunit/includes/functions.php';
  * Manually load the plugin being tested.
  */
 function _manually_load_plugin() {
-	require dirname( dirname( __FILE__ ) ) . '/add-admin-javascript.php';
+	require_once ADD_ADMIN_JAVASCRIPT_PLUGIN_FILE;
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
