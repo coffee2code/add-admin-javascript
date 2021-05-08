@@ -294,7 +294,7 @@ final class c2c_AddAdminJavaScript extends c2c_Plugin_061 {
 	 * @param object $screen The screen object (only supplied in WP 3.0)
 	 */
 	public function contextual_help( $contextual_help, $screen_id, $screen = null ) {
-		if ( $screen_id != $this->options_page ) {
+		if ( $screen_id !== $this->options_page ) {
 			return $contextual_help;
 		}
 
@@ -358,7 +358,7 @@ HTML;
 	public function get_jq() {
 		$options = $this->get_options();
 
-		if ( $this->jq === false || empty( $this->jq ) ) {
+		if ( ! $this->jq ) {
 			$js_jq = $options['js_jq'];
 			if ( $js_jq ) {
 				$js_jq .= "\n";
@@ -389,7 +389,7 @@ HTML;
 
 		$options = $this->get_options();
 
-		if ( $this->get_jq() != '' ) {
+		if ( $this->get_jq() !== '' ) {
 			wp_enqueue_script( 'jquery' );
 		}
 
@@ -491,7 +491,7 @@ HTML;
 		 */
 		$js = trim( apply_filters( 'c2c_add_admin_js_head', $js_head ) );
 
-		if ( ! empty( $js ) ) {
+		if ( $js ) {
 			echo "
 			<script>
 			$js
@@ -524,7 +524,7 @@ HTML;
 		 */
 		$js = trim( apply_filters( 'c2c_add_admin_js_footer', $js_foot ) );
 
-		if ( ! empty( $js ) ) {
+		if ( $js ) {
 			echo "
 			<script>
 			$js
@@ -533,7 +533,7 @@ HTML;
 		}
 
 		$js = $this->get_jq();
-		if ( ! empty( $js ) ) {
+		if ( $js ) {
 			echo "
 			<script>
 				jQuery(document).ready(function($) {
